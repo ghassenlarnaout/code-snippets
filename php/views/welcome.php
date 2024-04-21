@@ -32,16 +32,71 @@ $item_limit = 4;
 <div class="csp-wrap csp-welcome-wrap">
     <!-- Header Section -->
     <div class="csp-header-wrap">
-        <img class="csp-logo" width="50px" src="<?php echo esc_url('https://codesnippets.pro/wp-content/uploads/2023/11/code-snippets-pro-logo80h-copy-1.png'); ?>" alt="Code Snippets Logo">    
-        <h1 class="csp-heading">
-            <?php printf( __( 'Welcome, <span>%s</span> to Code Snippets', 'code-snippets' ), 
-                    esc_html__( $current_user->display_name, 'code-snippets' ) 
-                    );  
-            ?>
-        </h1>
+        <div class="csp-header-logo-title">
+            <img class="csp-logo" width="50px" src="<?php echo esc_url('https://codesnippets.pro/wp-content/uploads/2023/11/code-snippets-pro-logo80h-copy-1.png'); ?>" alt="Code Snippets Logo">    
+            <h1 class="csp-heading">
+                <?php echo __("Resources & <span>What's new</span>", "code-snippets"); ?>  
+            </h1>
+        </div>
+        <!-- Quicklinks -->
+        <ul class="csp-list-header-nav">
+            <li>
+                <?php 
+                printf('<a href="%s" class="csp-link-nav csp-link-cloud">
+                            <div class="csp-link-text">
+                                <span class="csp-link-text-top">%s</span>
+                            </div>
+                            <span class="dashicons dashicons-cloud"></span>
+                        </a>', 
+                    esc_url( 'https://codesnippets.cloud/' ),
+                    esc_html__( 'Cloud', 'code-snippets'),
+                );
+                ?>
+            </li>
+            <li>
+                <?php 
+                printf('<a href="%s" class="csp-link-nav csp-link-resources">
+                            <div class="csp-link-text">
+                                <span class="csp-link-text-top">%s</span>
+                            </div>
+                            <span class="dashicons dashicons-sos"></span>
+                        </a>', 
+                    esc_url( 'https://help.codesnippets.pro/' ),
+                    esc_html__( 'Support', 'code-snippets'),
+                );
+                ?>
+            </li>
+            <li>
+                <?php 
+                printf('<a href="%s" class="csp-link-nav csp-link-community">
+                            <div class="csp-link-text">
+                                <span class="csp-link-text-top">%s</span>
+                            </div>
+                            <span class="dashicons dashicons-facebook"></span>
+                        </a>', 
+                    esc_url( 'https://www.facebook.com/groups/282962095661875/' ),
+                    esc_html__( 'Community', 'code-snippets'),
+                );
+                ?>
+            </li>
+            <li>
+                <?php 
+                printf('<a href="%s" class="csp-link-nav csp-link-pro">
+                            <div class="csp-link-text">
+                                <span class="csp-link-text-top">%s</span>
+                            </div>
+                            <span class="dashicons dashicons-cart"></span>
+                        </a>', 
+                    esc_url( 'https://codesnippets.pro/pricing/' ),
+                    esc_html__( 'Get Full', 'code-snippets'),
+                );
+                ?>
+            </li>
+        </ul>
     </div>
     <!-- Changelog and Key Feature -->
     <article class="csp-section-changes">
+        <h2 class="csp-h2 csp-section-links-heading"><?php echo __('Latest News.. ', 'code-snippets'); ?>✨</h2>
         <div class="csp-section-changes-body">
 
             <div class="csp-section-changes-left-col csp-section-changes-col">
@@ -101,7 +156,7 @@ $item_limit = 4;
     </article>
     <!-- Helpful tips and tricks -->
     <section class="csp-section-links"> 
-        <h2 class="csp-h2 csp-section-links-heading"><?php echo __('Highlighted features.. ', 'code-snippets'); ?>🎉</h2>
+        <h2 class="csp-h2 csp-section-links-heading"><?php echo __('Helpful articles.. ', 'code-snippets'); ?>🎉</h2>
         <div class="csp-grid csp-grid-4"> 
             <?php
                 for( $i = 0; $i < $item_limit; $i++ ) {
@@ -144,56 +199,6 @@ $item_limit = 4;
                 }
             ?>
         </div>
-    </section>
-    <!-- Quicklinks Section -->
-    <section class="csp-section-nav">
-        <ul class="csp-list-nav">
-            <li>
-                <?php 
-                printf('<a href="%s" class="csp-link-nav csp-link-new-snippet"><span class="dashicons dashicons-edit"></span><div class="csp-link-text"><span class="csp-link-text-top">%s</span><span class="csp-link-text-bottom">%s</span></div></a>', 
-                    esc_url( admin_url( 'admin.php?page=add-snippet' ) ),
-                    esc_html__( 'Create', 'code-snippets'),
-                    esc_html__( 'Add new snippet', 'code-snippets')
-                );
-                ?>
-            </li>
-            <li>
-                <?php 
-                printf('<a href="%s" class="csp-link-nav csp-link-cloud"><span class="dashicons dashicons-cloud"></span><div class="csp-link-text"><span class="csp-link-text-top">%s</span><span class="csp-link-text-bottom">%s</span></div></a>', 
-                    esc_url( 'https://codesnippets.cloud/' ),
-                    esc_html__( 'Cloud', 'code-snippets'),
-                    esc_html__( 'Sync and transfer', 'code-snippets')
-                );
-                ?>
-            </li>
-            <li>
-                <?php 
-                printf('<a href="%s" class="csp-link-nav csp-link-pro"><span class="dashicons dashicons-external"></span><div class="csp-link-text"><span class="csp-link-text-top">%s</span><span class="csp-link-text-bottom">%s</span></div></a>', 
-                    esc_url( 'https://codesnippets.pro/pricing/' ),
-                    esc_html__( 'Go Pro', 'code-snippets'),
-                    esc_html__( 'See all features', 'code-snippets')
-                );
-                ?>
-            </li>
-            <li>
-                <?php 
-                printf('<a href="%s" class="csp-link-nav csp-link-resources"><span class="dashicons dashicons-welcome-learn-more"></span><div class="csp-link-text"><span class="csp-link-text-top">%s</span><span class="csp-link-text-bottom">%s</span></div></a>', 
-                    esc_url( 'https://help.codesnippets.pro/' ),
-                    esc_html__( 'Learn', 'code-snippets'),
-                    esc_html__( 'Become a pro', 'code-snippets')
-                );
-                ?>
-            </li>
-            <li>
-                <?php 
-                printf('<a href="%s" class="csp-link-nav csp-link-community"><span class="dashicons dashicons-facebook"></span><div class="csp-link-text"><span class="csp-link-text-top">%s</span><span class="csp-link-text-bottom">%s</span></div></a>', 
-                    esc_url( 'https://www.facebook.com/groups/282962095661875/' ),
-                    esc_html__( 'Community', 'code-snippets'),
-                    esc_html__( 'Join Facebook group', 'code-snippets')
-                );
-                ?>
-            </li>
-        </ul>
     </section>
 </div>
 

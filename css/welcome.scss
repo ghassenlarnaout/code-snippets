@@ -6,23 +6,123 @@
 
     .csp-header-wrap{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
 
-        .csp-heading{
-            font-size: 2rem;
-            font-weight: bold;
-            line-height: 1;
+        .csp-header-logo-title{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        
+            .csp-heading{
+                font-size: 1.4rem;
+                font-weight: bold;
+                line-height: 1;
 
-            span{
-                text-decoration: underline;
-                text-decoration-color: var(--cs-blue);
-                text-decoration-style: wavy;
-                text-decoration-skip-ink: none;
-                text-decoration-thickness: 3px;
-                text-underline-offset: 11px;
-                text-transform: capitalize;
+                span{
+                    text-decoration: underline;
+                    text-decoration-color: var(--cs-blue);
+                    text-decoration-style: wavy;
+                    text-decoration-skip-ink: none;
+                    text-decoration-thickness: 3px;
+                    text-underline-offset: 11px;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        .csp-list-header-nav{
+            column-gap: 15px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin: 0px;
+
+            li{
+                margin-bottom: 0px;
+            }
+
+            .csp-link-nav{
+                align-items: center;
+                border-width: 1px;
+                border-style: solid;
+                color: white;
+                cursor: pointer;
+                display: flex;
+                font-weight: 400;
+                gap: 10px;
+                text-decoration: none;
+                transition: all .1s ease-in-out;
+                border-radius: 3px;
+                padding: 8px;
+            
+
+                &:hover{
+                    background: transparent;
+                }
+            }
+
+            .csp-link-pro{
+                background: var(--cs-orange);
+                border-color: var(--cs-orange);
+                
+                &:hover{
+                    .csp-link-text{
+                        color: var(--cs-orange);
+                    }
+
+                    .dashicons{
+                        color: var(--cs-orange);
+                    }
+                }
+            }
+
+            .csp-link-cloud{
+                background: #08c5d1;
+                border-color: #08c5d1;
+
+                &:hover{
+                    .csp-link-text{
+                        color: #08c5d1;
+                    }
+
+                    .dashicons{
+                        color: #08c5d1;
+                    }
+                }
+            }
+
+            .csp-link-resources{
+                background: #424242;
+                border-color: #424242;
+
+                &:hover{
+                    .csp-link-text{
+                        color: #424242;
+                    }
+
+                    .dashicons{
+                        color: #424242;
+                    }
+                }
+            }
+
+            .csp-link-community{
+                background: #3b5998;
+                border-color: #3b5998;
+
+                &:hover{
+                    .csp-link-text{
+                        color: #3b5998;
+                    }
+
+                    .dashicons{
+                        color: #3b5998;
+                    }
+                }
             }
         }
     }
@@ -61,11 +161,11 @@
     .csp-section-changes{
         border-top: 1px solid var(--cs-dark-grey);
         border-bottom: 1px solid var(--cs-dark-grey);
-        padding: 50px 10px;
+        padding: 40px 0px 50px 0px;
         display: flex;
         flex-direction: column;
         row-gap: 20px;
-        margin-top: 40px;
+        margin-top: 30px;
 
         .csp-section-changes-body{
             display: flex;
@@ -134,163 +234,8 @@
         }
     }
 
-    .csp-section-nav{
-        border-top: 1px solid var(--cs-dark-grey);
-        border-bottom: 1px solid var(--cs-dark-grey);
-        padding-top: 30px;
-        padding-bottom: 30px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        
-        .csp-list-nav{
-            display: flex;
-            flex-direction: row;
-            row-gap: 20px;
-            column-gap: 15px;
-            justify-content: space-evenly;
-            flex-wrap: wrap;
-
-            .csp-link-nav{
-                cursor: pointer;
-                border: none;
-                text-decoration: none;
-                font-weight: 400;
-                color: #2271b1;
-                display: flex;
-                gap: 10px;
-                align-items: start;
-                transition: all 0.3s ease-in-out;
-
-                .dashicons{
-                    margin-right: 10px;
-                    font-size: 1.7rem;
-                    margin-top: -2px;
-                    padding: 17px 15px;
-                    line-height: inherit;
-                    width: fit-content;
-                    border-radius: 3px;
-                    border-width: 2px;
-                    border-style: solid;                    
-                }
-
-                .csp-link-text{
-                    display: flex;
-                    flex-direction: column;
-                    flex-wrap: nowrap;
-                    row-gap: 0.125rem;
-                    justify-content: space-around;
-                    align-self: stretch;
-
-                    .csp-link-text-top{
-                        font-size: 1.25rem;
-                        font-weight: 500;
-                        line-height: 1.2;
-                    }
-
-                    .csp-link-text-bottom{
-                        font-size: 0.875rem;
-                        font-weight: 400;
-                        line-height: 1.2;
-                    }
-                }
-            }
-
-            .csp-link-pro{
-                color: var(--cs-orange);
-
-                .dashicons{
-                    border-color: var(--cs-orange);
-                    background-color: var(--cs-orange);
-                    color: white;
-                }
-                
-                &:hover{
-                    .dashicons{
-                        background-color: transparent;
-                        color: var(--cs-orange);
-                    }
-                }
-            }
-
-            .csp-link-cloud{
-                color: #08c5d1;
-
-                .dashicons{
-                    border-color: #08c5d1;
-                    background-color: #08c5d1;
-                    color: white;
-                }
-
-                &:hover{
-                    .dashicons{
-                        background-color: transparent;
-                        color: #08c5d1;
-                    }
-                }
-            }
-
-            .csp-link-new-snippet {
-                .dashicons{
-                    border-color: #2271b1;
-                    background-color: #2271b1;
-                    color: white;
-                }
-
-                &:hover{
-                    .dashicons{
-                        background-color: transparent;
-                        color: #2271b1;
-                    }
-                }
-            }
-
-            .csp-link-resources{
-                color: #424242;
-
-                .dashicons{
-                    border-color: #424242;
-                    background-color: #424242;
-                    color: white;
-                }
-
-                &:hover{
-                    .dashicons{
-                        background-color: transparent;
-                        color: #424242;
-                    }
-                }
-            }
-
-            .csp-link-community{
-                color: #3b5998;
-
-                .dashicons{
-                    background-color: #3b5998;
-                    border-color: #3b5998;
-                    color: white;
-                }
-
-                &:hover{
-                    .dashicons{
-                        background-color: transparent;
-                        color: #3b5998;
-                    }
-                }
-            }
-        }
-
-        .csp-changelog-list{
-            list-style-position: inside;
-            list-style-type: disc;
-
-            li{
-                margin-left: 1rem;
-            }
-        }
-    }
-
     .csp-section-links{
-        padding: 80px 0px;
+        padding: 40px 0px 50px 0px;
 
         .csp-card-item{
             border: 1px solid var(--cs-dark-grey);
