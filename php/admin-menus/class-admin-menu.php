@@ -2,8 +2,6 @@
 
 namespace Code_Snippets;
 
-use wpdb;
-
 /**
  * Base class for a plugin admin menu.
  */

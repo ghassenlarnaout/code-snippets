@@ -28,13 +28,6 @@ class Manage_Menu extends Admin_Menu {
 	public $cloud_search_list_table;
 
 	/**
-	 *  URL for Welecome Page.
-	 *
-	 * @var string
-	 */
-	const WELCOME_JSON_URL = 'https://codesnippets.pro/wp-content/uploads/cs_welcome/cs_welcome.json';
-
-	/**
 	 * Class constructor
 	 */
 	public function __construct() {
@@ -111,18 +104,7 @@ class Manage_Menu extends Admin_Menu {
 			100
 		);
 
-		add_submenu_page(
-			code_snippets()->get_menu_slug(),
-			__( 'Welcome to Code Snippets', 'code-snippets' ),
-			__( 'Resources', 'code-snippets' ),
-			code_snippets()->get_cap(),
-			'code_snippets',
-			array( $this, 'render_welcome' ),
-			1
-		);
-
 		add_action( "load-$hook", [ $this, 'load_upgrade_menu' ] );
-		//add_action( "load-$welcome", [ $this, 'load_welcome_menu' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_menu_button_css' ] );
 	}
 
@@ -148,33 +130,6 @@ class Manage_Menu extends Admin_Menu {
 	public function load_upgrade_menu() {
 		wp_safe_redirect( 'https://snipco.de/JE2f' );
 		exit;
-	}
-
-	/**
-	 * Load the welcome view
-	 *
-	 * @return void
-	 */
-	public function render_welcome() {
-		//Enqueue the welcome screen CSS 
-		wp_enqueue_style(
-			'code-snippets-welcome',
-			plugins_url( 'dist/welcome.css', PLUGIN_FILE ),
-			[],
-			PLUGIN_VERSION
-		);		
-		$this->render_view( 'welcome' );
-	}
-
-	/**
-	 * Load the welcome data
-	 *
-	 * @return string
-	 */
-	public function load_welcome_data() {
-		$welcome_data = wp_remote_get( self::WELCOME_JSON_URL );
-		$welcome_data = json_decode( wp_remote_retrieve_body( $welcome_data ), true );
-		return $welcome_data;
 	}
 
 	/**
