@@ -79,7 +79,7 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 			foreach ( $links as $link_name => $link_info ) {
 				?>
 				<li>
-					<a href="<?php echo esc_url( $link_info['url'] ); ?>"
+					<a href="<?php echo esc_url( $link_info['url'] ); ?>" target="_blank"
 					   class="csp-link-nav csp-link-<?php echo esc_attr( $link_name ); ?>">
 						<div class="csp-link-text">
 							<span class="csp-link-text-top"><?php echo esc_html( $link_info['label'] ); ?></span>
@@ -129,7 +129,7 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 						</h2>
 						<?php
 						printf(
-							'<a href="%s" class="csp-link">%s<span class="dashicons dashicons-external"></span></a>',
+							'<a href="%s" class="csp-link" target="_blank">%s<span class="dashicons dashicons-external"></span></a>',
 							esc_url( 'https://codesnippets.pro/changelog/' ),
 							esc_html__( 'Full Changelog', 'code-snippets' )
 						);
