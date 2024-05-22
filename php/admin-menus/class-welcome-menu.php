@@ -21,6 +21,13 @@ class Welcome_Menu extends Admin_Menu {
 	protected const WELCOME_JSON_URL = 'https://codesnippets.pro/wp-content/uploads/cs_welcome/cs_welcome.json';
 
 	/**
+	 * Key used for caching welcome page data.
+	 *
+	 * @var string
+	 */
+	protected const CACHE_KEY = 'code_snippets_welcome_data';
+
+	/**
 	 * Limit of number of items to display when loading lists of items.
 	 *
 	 * @var int
@@ -32,7 +39,7 @@ class Welcome_Menu extends Admin_Menu {
 	 *
 	 * @var ?array
 	 */
-	protected $remote_data = null;
+	private $welcome_data = null;
 
 	/**
 	 * Class constructor
@@ -43,18 +50,6 @@ class Welcome_Menu extends Admin_Menu {
 			_x( "What's New", 'menu label', 'code-snippets' ),
 			__( 'Welcome to Code Snippets', 'code-snippets' )
 		);
-	}
-
-	/**
-	 * Load remote welcome data when the page is loaded.
-	 *
-	 * @return void
-	 */
-	public function load() {
-		parent::load();
-
-		$welcome_data_response = wp_remote_get( self::WELCOME_JSON_URL );
-		$this->remote_data = json_decode( wp_remote_retrieve_body( $welcome_data_response ), true );
 	}
 
 	/**
@@ -72,36 +67,43 @@ class Welcome_Menu extends Admin_Menu {
 	}
 
 	/**
-	 * Retrieve remote data for the hero item.
+	 * Load remote welcome data when the page is loaded.
 	 *
-	 * @return array{follow_url: string, name: string, image_url: string}
+	 * @return void
 	 */
-	protected function get_hero_item(): array {
-		return array_merge(
+	public function load() {
+		parent::load();
+
+		if ( ! is_array( $this->welcome_data ) ) {
+			$this->welcome_data = get_transient( self::CACHE_KEY );
+		}
+
+		if ( ! is_array( $this->welcome_data ) ) {
+			$this->welcome_data = [];
+			$this->fetch_remote_welcome_data();
+			$this->build_changelog_data();
+			set_transient( self::CACHE_KEY, $this->welcome_data, DAY_IN_SECONDS * 2 );
+		}
+	}
+
+	/**
+	 * Fetch remote welcome data from the remote server and add it to the stored data.
+	 *
+	 * @return void
+	 */
+	protected function fetch_remote_welcome_data() {
+		$remote_welcome_data = wp_remote_get( self::WELCOME_JSON_URL );
+		$remote_welcome_data = json_decode( wp_remote_retrieve_body( $remote_welcome_data ), true );
+
+		$this->welcome_data['hero-item'] = array_merge(
 			[
 				'follow_url' => '',
 				'name'       => '',
 				'image_url'  => '',
 			],
-			isset( $this->remote_data['hero-item'][0] ) && is_array( $this->remote_data['hero-item'][0] ) ?
-				$this->remote_data['hero-item'][0] : []
+			isset( $remote_welcome_data['hero-item'][0] ) && is_array( $remote_welcome_data['hero-item'][0] ) ?
+				$remote_welcome_data['hero-item'][0] : []
 		);
-	}
-
-	/**
-	 * Parse a list of remote items, ensuring there are no missing keys and a limit number is enforced.
-	 *
-	 * @param 'features'|'partners' $remote_key Key from remote data to parse.
-	 *
-	 * @return array<array{follow_url: string, image_url: string, title: string}>
-	 */
-	protected function get_remote_items( string $remote_key ): array {
-		if ( ! isset( $this->remote_data[ $remote_key ] ) || ! is_array( $this->remote_data[ $remote_key ] ) ) {
-			return [];
-		}
-
-		$limit = max( self::ITEM_LIMIT, count( $this->remote_data[ $remote_key ] ) );
-		$items = [];
 
 		$default_item = [
 			'follow_url' => '',
@@ -109,11 +111,22 @@ class Welcome_Menu extends Admin_Menu {
 			'title'      => '',
 		];
 
-		for ( $i = 0; $i < $limit; $i++ ) {
-			$items[] = array_merge( $default_item, $this->remote_data[ $remote_key ][ $i ] );
-		}
+		foreach ( [ 'features', 'partners' ] as $items_key ) {
+			$this->welcome_data[ $items_key ] = [];
 
-		return $items;
+			if ( ! isset( $this->welcome_data[ $items_key ] ) || ! is_array( $this->welcome_data[ $items_key ] ) ) {
+				continue;
+			}
+
+			$limit = max( self::ITEM_LIMIT, count( $this->welcome_data[ $items_key ] ) );
+
+			for ( $i = 0; $i < $limit; $i++ ) {
+				$this->welcome_data[ $items_key ][] = array_merge(
+					$default_item,
+					$remote_welcome_data[ $items_key ][ $i ]
+				);
+			}
+		}
 	}
 
 	/**
@@ -126,11 +139,11 @@ class Welcome_Menu extends Admin_Menu {
 	}
 
 	/**
-	 * Retrieve a list of latest changes for display.
+	 * Build the full list of latest changes for caching.
 	 *
-	 * @return array<string, array{title: string, icon: string, changes: string[]}>
+	 * @return void
 	 */
-	protected function get_latest_changes(): array {
+	protected function build_changelog_data() {
 		$text = "* Fixed: Minor type compatability issue with newer versions of PHP.
 * Improved: Increment the revision number of CSS and JS snippet when using the 'Reset Caches' debug action. (PRO)
 * Fixed: Undefined array key issue when initiating cloud sync. (PRO)
@@ -175,7 +188,7 @@ class Welcome_Menu extends Admin_Menu {
 			}
 		}
 
-		return array_filter(
+		$this->welcome_data['changes'] = array_filter(
 			$changes,
 			function ( $section ) {
 				return ! empty( $section['changes'] );
@@ -200,14 +213,14 @@ class Welcome_Menu extends Admin_Menu {
 				'icon'  => 'sos',
 				'label' => __( 'Support', 'code-snippets' ),
 			],
-			'facebook' => [
+			'facebook'  => [
 				'url'   => 'https://www.facebook.com/groups/282962095661875/',
 				'icon'  => 'facebook',
 				'label' => __( 'Community', 'code-snippets' ),
 			],
-			'discord' => [
-				'url' => 'https://discord.gg/7EgrDz9P2w',
-				'icon' => 'discord',
+			'discord'   => [
+				'url'   => 'https://discord.gg/7EgrDz9P2w',
+				'icon'  => 'discord',
 				'label' => __( 'Discord', 'code-snippets' ),
 			],
 			'pro'       => [
@@ -216,5 +229,34 @@ class Welcome_Menu extends Admin_Menu {
 				'label' => __( 'Get Pro', 'code-snippets' ),
 			],
 		];
+	}
+
+	/**
+	 * Retrieve remote data for the hero item.
+	 *
+	 * @return array{follow_url: string, name: string, image_url: string}
+	 */
+	protected function get_hero_item(): array {
+		return $this->welcome_data['hero-item'] ?? [];
+	}
+
+	/**
+	 * Parse a list of remote items, ensuring there are no missing keys and a limit number is enforced.
+	 *
+	 * @param 'features'|'partners' $remote_key Key from remote data to parse.
+	 *
+	 * @return array<array{follow_url: string, image_url: string, title: string}>
+	 */
+	protected function get_remote_items( string $remote_key ): array {
+		return $this->welcome_data[ $remote_key ] ?? [];
+	}
+
+	/**
+	 * Retrieve a list of latest changes for display.
+	 *
+	 * @return array<string, array{title: string, icon: string, changes: string[]}>
+	 */
+	protected function get_latest_changes(): array {
+		return $this->welcome_data['changes'] ?? [];
 	}
 }
