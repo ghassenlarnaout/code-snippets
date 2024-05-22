@@ -1,5 +1,7 @@
 @import 'common/base';
 
+$breakpoint: 1060px;
+
 .csp-welcome-wrap {
 	padding: 25px;
 
@@ -152,9 +154,7 @@ a.csp-card {
 	margin-top: 30px;
 
 	.csp-cards {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		grid-template-columns: 2fr 1fr;
 		gap: 20px;
 	}
 
@@ -164,14 +164,6 @@ a.csp-card {
 
 		h3 {
 			color: $theme-primary;
-		}
-
-		&:first-child {
-			width: 60%;
-		}
-
-		&:last-child {
-			width: 40%;
 		}
 	}
 
@@ -308,33 +300,9 @@ a.csp-card {
 	row-gap: 40px;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 15px;
-}
 
-@media (max-width: 1060px) {
-	.csp-welcome-wrap {
-		.csp-section-changes {
-			.csp-section-changes-body {
-				flex-direction: column;
-			}
-
-			.csp-section-changes-left-col {
-				width: 100%;
-			}
-
-			.csp-section-changes-right-col {
-				width: 100%;
-			}
-		}
-
-		.csp-section-links {
-			.csp-grid-2 {
-				grid-template-columns: repeat(1, 1fr);
-			}
-
-			.csp-grid-3 {
-				grid-template-columns: repeat(1, 1fr);
-			}
-		}
+	@media (max-width: $breakpoint) {
+		grid-template-columns: 1fr !important;
 	}
 }
 
