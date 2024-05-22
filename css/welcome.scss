@@ -3,85 +3,7 @@
 .csp-welcome-wrap {
 	padding: 25px;
 
-	.csp-header-wrap {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-
-		.csp-header-logo-title {
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			gap: 10px;
-
-			.csp-heading {
-				font-size: 1.4rem;
-				font-weight: bold;
-				line-height: 1;
-
-				span {
-					text-decoration: underline $theme-primary wavy 3px;
-					text-decoration-skip-ink: none;
-					text-underline-offset: 11px;
-					text-transform: capitalize;
-				}
-			}
-		}
-
-		.csp-list-header-nav {
-			column-gap: 15px;
-			display: flex;
-			flex-flow: row wrap;
-			justify-content: space-evenly;
-			margin: 0;
-
-			li {
-				margin-bottom: 0;
-			}
-
-			.csp-link-nav {
-				align-items: center;
-				border-width: 1px;
-				border-style: solid;
-				color: white;
-				cursor: pointer;
-				display: flex;
-				font-weight: 400;
-				gap: 10px;
-				text-decoration: none;
-				transition: all .1s ease-in-out;
-				border-radius: 3px;
-				padding: 8px;
-
-
-				&:hover {
-					background: transparent;
-				}
-			}
-
-			@each $link_name, $color in (
-					pro: $theme-secondary,
-					cloud: #08c5d1,
-					resources: #424242,
-					community: #3b5998
-			) {
-				.csp-link-#{$link_name} {
-					background: $color;
-					border-color: $color;
-
-					&:hover {
-						.csp-link-text, .dashicons {
-							color: $color;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	.csp-h2 {
-		font-size: 1.5rem;
+	h2, h3 {
 		font-weight: 700;
 		margin-top: 10px;
 		margin-bottom: 10px;
@@ -92,214 +14,286 @@
 		}
 	}
 
-	.csp-link {
-		font-size: 15px;
+	h2 {
+		font-size: 1.6rem;
+	}
+
+	h3 {
+		font-size: 1.4rem;
+	}
+
+	.dashicons-external {
+		float: right;
+		color: #666;
+	}
+}
+
+.csp-welcome-header {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: center;
+
+	.csp-welcome-logo {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 10px;
+
+		h1 {
+			font-size: 1.4rem;
+			font-weight: bold;
+			line-height: 1;
+
+			span {
+				text-decoration: underline $theme-primary wavy 3px;
+				text-decoration-skip-ink: none;
+				text-underline-offset: 11px;
+				text-transform: capitalize;
+			}
+		}
+	}
+}
+
+.csp-welcome-nav {
+	column-gap: 15px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+	margin: 0;
+
+	li {
+		margin-bottom: 0;
+	}
+
+	li a {
 		margin-top: 10px;
 		margin-bottom: 10px;
+		align-items: center;
+		border-width: 1px;
+		border-style: solid;
+		color: white;
+		cursor: pointer;
+		display: flex;
+		font-weight: 400;
+		gap: 10px;
+		text-decoration: none;
+		transition: all .1s ease-in-out;
+		border-radius: 3px;
+		padding: 8px;
 
 		.dashicons {
 			text-decoration: none;
 			margin-top: -1px;
 			margin-left: 3px;
 		}
+
+		&:hover {
+			background: transparent;
+		}
 	}
 
-	.csp-card-white {
+	@each $link_name, $color in (pro: $theme-secondary, cloud: #08c5d1, resources: #424242, community: #3b5998) {
+		.csp-link-#{$link_name} {
+			background: $color;
+			border-color: $color;
+
+			&:hover {
+				color: $color;
+			}
+		}
+	}
+}
+
+a.csp-card {
+	text-decoration: none;
+
+	&:hover {
+		background: lighten($theme-primary, 55%);
+		transition: .5s background-color;
+		box-shadow: 0 1px 1px rgb(255 255 255 / 50%);
+
+		.dashicons-external {
+			color: #000;
+		}
+	}
+}
+
+
+.csp-section-changes {
+	border: 1px solid $theme-outline;
+	border-left: 0;
+	border-right: 0;
+	padding: 40px 0 50px 0;
+	display: flex;
+	flex-direction: column;
+	row-gap: 20px;
+	margin-top: 30px;
+
+	.csp-cards {
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		justify-content: space-between;
+	}
+
+	.csp-card {
 		background: white;
 		border-radius: 10px;
 		padding: 20px;
 		box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 		border: 1px solid $theme-outline;
-
-		.csp-h2 {
-			color: $theme-primary;
-		}
-	}
-
-	.csp-section-changes {
-		border-top: 1px solid $theme-outline;
-		border-bottom: 1px solid $theme-outline;
-		padding: 40px 0 50px 0;
 		display: flex;
-		flex-direction: column;
-		row-gap: 20px;
-		margin-top: 30px;
+		flex-flow: column;
 
-		.csp-section-changes-body {
-			display: flex;
-			flex-direction: row;
-			gap: 20px;
-			justify-content: space-between;
+		h3 {
+			color: $theme-primary;
+			margin-bottom: 1em;
 		}
 
-		.csp-section-changes-left-col {
+		&:first-child {
 			width: 60%;
 		}
 
-		.csp-section-changes-right-col {
+		&:last-child {
 			width: 40%;
-			justify-content: space-between;
+		}
+	}
+
+	.csp-section-changes-log {
+		font-size: 16px;
+		line-height: 1.5;
+		color: #333;
+
+		p {
+			font-size: 16px;
+			line-height: 1.5;
+			color: #333;
 		}
 
-		.csp-section-changes-col {
-			display: flex;
+		.csp-changelog-list {
+			list-style-position: inside;
+			list-style-type: disc;
 
-			.csp-section-changes-header {
-				display: flex;
-				flex-direction: column;
-			}
-
-			.csp-section-changes-log {
-				font-size: 16px;
-				line-height: 1.5;
-				color: #333;
-
-				p {
-					font-size: 16px;
-					line-height: 1.5;
-					color: #333;
-				}
-
-				.csp-changelog-list {
-					list-style-position: inside;
-					list-style-type: disc;
-
-					li {
-						margin-left: 1rem;
-					}
-				}
-			}
-
-			.csp-img-link {
-				margin-bottom: 20px;
-			}
-
-			.csp-section-changes-img-wrap {
-				overflow: hidden;
-				border-radius: 0.5rem;
-				border: 1px solid grey;
-				position: relative;
-				height: auto;
-				background: #646970;
-
-				.csp-section-changes-img {
-					width: 100%;
-					height: 100%;
-					overflow: hidden;
-					object-fit: cover;
-				}
+			li {
+				margin-left: 1rem;
 			}
 		}
 	}
 
-	.csp-section-links {
-		padding: 40px 0 50px 0;
+	figure {
+		margin: 0;
+		overflow: hidden;
+		border-radius: 0.5rem;
+		border: 1px solid grey;
+		position: relative;
+		height: auto;
+		background: #646970;
 
-		.csp-card-item {
-			border: 1px solid $theme-outline;
-			border-radius: 10px;
-			color: black;
-			position: relative;
+		img {
+			width: 100%;
+			height: 100%;
 			overflow: hidden;
-			background: white;
-			display: flex;
-			flex-direction: column;
-			row-gap: 10px;
-			padding: 1rem 1rem 2rem;
-			justify-content: space-between;
-			width: 85%;
+			object-fit: cover;
+		}
+	}
+}
 
-			.csp-card-item-content {
-				display: flex;
-				flex-direction: column;
-				align-items: start;
-				justify-content: stretch;
-				flex-grow: 1;
-			}
 
-			.csp-card-item-img-wrap {
+.csp-section-articles {
+	figure img {
+		aspect-ratio: 1;
+	}
+}
 
-				.csp-card-item-img {
-					border-radius: 5px;
-					width: 100%;
-					height: 100%;
-					max-height: 300px;
-					overflow: hidden;
-					object-fit: cover;
-				}
+.csp-section-links {
+	padding: 40px 0 50px 0;
 
-				.csp-card-img-square {
-					aspect-ratio: 1;
-				}
-			}
+	.csp-card {
+		border: 1px solid $theme-outline;
+		border-radius: 10px;
+		color: black;
+		position: relative;
+		overflow: hidden;
+		background: white;
+		display: flex;
+		flex-direction: column;
+		row-gap: 10px;
+		padding: 1rem;
+		justify-content: flex-start;
+		width: 85%;
 
-			.csp-card-item-category {
-				color: white;
-				background: $theme-secondary;
-				display: block;
-				font-size: 1rem;
-				letter-spacing: 1px;
-				margin-bottom: 0;
-				margin-top: 0;
-				text-transform: uppercase;
-				width: fit-content;
-				padding: 5px 15px;
-				border-radius: 50px;
-			}
+		header {
+			flex: 1;
+		}
 
-			.csp-card-item-title {
-				font-size: 1.7rem;
-				margin-top: 0;
-				color: $theme-primary;
-			}
+		figure {
+			margin: 0;
 
-			.csp-card-item-description {
-				color: #51525c;
-				font-size: 1.125rem;
-				font-weight: 300;
-			}
-
-			.csp-card-item-footer {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-			}
-
-			.csp-partner-item-footer {
-				display: flex;
-				justify-content: start;
+			img {
+				border-radius: 5px;
+				width: 100%;
+				height: 100%;
+				max-height: 300px;
+				overflow: hidden;
+				object-fit: cover;
 			}
 		}
 
+		.csp-card-item-category {
+			color: white;
+			background: $theme-secondary;
+			display: block;
+			font-size: .9rem;
+			letter-spacing: 1px;
+			margin-bottom: 0;
+			margin-top: 0;
+			text-transform: uppercase;
+			width: fit-content;
+			padding: 5px 15px;
+			border-radius: 50px;
+		}
+
+		h3 {
+			font-size: 1.7rem;
+			color: $theme-primary;
+			line-height: normal;
+		}
+
+		.csp-card-item-description {
+			color: #51525c;
+			font-size: 1.1rem;
+			font-weight: 300;
+		}
+
+		footer {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 
-	.csp-section-partners {
-		border-top: 1px solid $theme-outline;
-	}
+}
 
-	.csp-grid-2 {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 15px;
-	}
+.csp-section-partners {
+	border-top: 1px solid $theme-outline;
 
-	.csp-grid-3 {
-		grid-template-columns: repeat(auto-fit, minmax(min(calc(((80 * 1rem) - (2rem * 2)) / 2.99), 100%), 1fr));
-		gap: 15px;
+	header {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		align-items: center;
 	}
+}
 
-	.csp-grid-4 {
-		grid-template-columns: repeat(4, 1fr);
-		gap: 15px;
-	}
-
-	.csp-grid {
-		display: grid;
-		grid-auto-rows: 1fr;
-		margin-top: 35px;
-		row-gap: 40px;
-	}
-
+.csp-cards {
+	display: grid;
+	grid-auto-rows: 1fr;
+	margin-top: 35px;
+	row-gap: 40px;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 15px;
 }
 
 @media (max-width: 1060px) {
