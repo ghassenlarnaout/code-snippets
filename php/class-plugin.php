@@ -173,7 +173,7 @@ class Plugin {
 		} elseif ( in_array( $menu, $settings, true ) ) {
 			return 'snippets-settings';
 		} elseif ( in_array( $menu, $welcome, true ) ) {
-			return 'code-snippets';
+			return 'code-snippets-welcome';
 		} else {
 			return 'snippets';
 		}
