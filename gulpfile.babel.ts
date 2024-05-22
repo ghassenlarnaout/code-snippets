@@ -46,7 +46,8 @@ const BUNDLE_FILES = [
 	'code-snippets.php',
 	'uninstall.php',
 	'readme.txt',
-	'license.txt'
+	'license.txt',
+	'CHANGELOG.md'
 ]
 
 const transformCss = () =>
