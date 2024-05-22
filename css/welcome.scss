@@ -83,7 +83,7 @@
 		border-radius: 3px;
 		padding: 8px;
 
-		.dashicons {
+		.dashicons, svg {
 			text-decoration: none;
 			margin-top: -1px;
 			margin-left: 3px;
@@ -94,7 +94,7 @@
 		}
 	}
 
-	@each $link_name, $color in (pro: $theme-secondary, cloud: #08c5d1, resources: #424242, community: #3b5998) {
+	@each $link_name, $color in (pro: $theme-secondary, cloud: #08c5d1, resources: #424242, discord: $brand-discord, facebook: $brand-facebook) {
 		.csp-link-#{$link_name} {
 			background: $color;
 			border-color: $color;
@@ -104,6 +104,26 @@
 			}
 		}
 	}
+
+	a svg {
+		fill: #fff;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+		vertical-align: top;
+	}
+
+	a:hover svg {
+		fill: currentColor;
+	}
+}
+
+.csp-card {
+	border: 1px solid $theme-outline;
+	background: white;
+	border-radius: 10px;
+	display: flex;
+	flex-flow: column;
 }
 
 a.csp-card {
@@ -134,22 +154,16 @@ a.csp-card {
 	.csp-cards {
 		display: flex;
 		flex-direction: row;
-		gap: 20px;
 		justify-content: space-between;
+		gap: 20px;
 	}
 
 	.csp-card {
-		background: white;
-		border-radius: 10px;
 		padding: 20px;
 		box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-		border: 1px solid $theme-outline;
-		display: flex;
-		flex-flow: column;
 
 		h3 {
 			color: $theme-primary;
-			margin-bottom: 1em;
 		}
 
 		&:first-child {
@@ -215,17 +229,13 @@ a.csp-card {
 	padding: 40px 0 50px 0;
 
 	.csp-card {
-		border: 1px solid $theme-outline;
-		border-radius: 10px;
+		margin-top: 20px;
+		justify-content: flex-start;
 		color: black;
 		position: relative;
 		overflow: hidden;
-		background: white;
-		display: flex;
-		flex-direction: column;
 		row-gap: 10px;
 		padding: 1rem;
-		justify-content: flex-start;
 		width: 85%;
 
 		header {

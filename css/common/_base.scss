@@ -20,6 +20,9 @@ $theme-primary: #03c7d2;
 $theme-secondary: #d46f4d;
 $theme-outline: #9e9e9e;
 
+$brand-discord: #5865f2;
+$brand-facebook: #3b5998;
+
 @mixin link-colors($color, $lightness: 15%) {
 	a {
 		color: $color;

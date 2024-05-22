@@ -200,10 +200,15 @@ class Welcome_Menu extends Admin_Menu {
 				'icon'  => 'sos',
 				'label' => __( 'Support', 'code-snippets' ),
 			],
-			'community' => [
+			'facebook' => [
 				'url'   => 'https://www.facebook.com/groups/282962095661875/',
 				'icon'  => 'facebook',
 				'label' => __( 'Community', 'code-snippets' ),
+			],
+			'discord' => [
+				'url' => 'https://discord.gg/7EgrDz9P2w',
+				'icon' => 'discord',
+				'label' => __( 'Discord', 'code-snippets' ),
 			],
 			'pro'       => [
 				'url'   => 'https://codesnippets.pro/pricing/',
