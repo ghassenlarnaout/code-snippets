@@ -62,7 +62,6 @@ $hero = $this->get_hero_item();
 					<div id="csp-loading-spinner" class="csp-loading-spinner"></div>
 					<img id="csp-changes-img"
 					     onload="hideLoadingAnimation()"
-					     class="csp-section-changes-img"
 					     src="<?php echo esc_url( $hero['image_url'] ); ?>"
 					     alt="<?php esc_attr_e( 'Latest news image', 'code-snippets' ); ?>);">
 				</figure>
@@ -81,14 +80,17 @@ $hero = $this->get_hero_item();
 				</header>
 				<div class="csp-section-changes-log">
 					<p><?php echo esc_html( $this->get_changelog_desc() ); ?></p>
-					<ul class="csp-changelog-list">
-						<?php foreach ( $this->get_latest_changes() as $change ) { ?>
-							<li>
-								<strong><?php echo esc_html( $change['title'] ); ?></strong>
-								<?php echo esc_html( $change['desc'] ); ?>
-							</li>
-						<?php } ?>
-					</ul>
+					<?php foreach ( $this->get_latest_changes() as $section ) { ?>
+						<h4>
+							<span class="dashicons dashicons-<?php echo esc_attr( $section['icon'] ); ?>"></span>
+							<?php echo esc_html( $section['title'] ); ?>
+						</h4>
+						<ul class="csp-changelog-list">
+							<?php foreach ( $section['changes'] as $change ) { ?>
+								<li><?php echo esc_html( $change ); ?></li>
+							<?php } ?>
+						</ul>
+					<?php } ?>
 				</div>
 			</a>
 		</div>

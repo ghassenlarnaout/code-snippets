@@ -128,19 +128,59 @@ class Welcome_Menu extends Admin_Menu {
 	/**
 	 * Retrieve a list of latest changes for display.
 	 *
-	 * @return array<array{title: string, desc: string}>
+	 * @return array<string, array{title: string, icon: string, changes: string[]}>
 	 */
 	protected function get_latest_changes(): array {
-		return [
-			[
-				'title' => __( 'Bug Fix: ', 'code-snippets' ),
-				'desc'  => __( 'Import error when initialising cloud sync configuration.', 'code-snippets' ),
+		$text = "* Fixed: Minor type compatability issue with newer versions of PHP.
+* Improved: Increment the revision number of CSS and JS snippet when using the 'Reset Caches' debug action. (PRO)
+* Fixed: Undefined array key issue when initiating cloud sync. (PRO)
+* Fixed: Bug preventing downloading a single snippet from a bundle. (PRO)
+* Added: AI generation for all snippet types: HTML, CSS, JS. (PRO)
+* Fixed: Translations not loading for strings in JavaScript files.
+* Improved: UX in generate dialog, such as allowing 'Enter' to submit the form. (PRO)
+* Added: Button to create a cloud connection directly from the Snippets menu when disconnected. (PRO)";
+
+		$changes = [
+			'Added'    => [
+				'title'   => __( 'New features', 'code-snippets' ),
+				'icon'    => 'lightbulb',
+				'changes' => [],
 			],
-			[
-				'title' => __( 'Improvement: ', 'code-snippets' ),
-				'desc'  => __( 'Added debug action for resetting snippets caches', 'code-snippets' ),
+			'Improved' => [
+				'title'   => __( 'Improvements', 'code-snippets' ),
+				'icon'    => 'chart-line',
+				'changes' => [],
+			],
+			'Fixed'    => [
+				'title'   => __( 'Bug fixes', 'code-snippets' ),
+				'icon'    => 'buddicons-replies',
+				'changes' => [],
+			],
+			'Other'    => [
+				'title'   => __( 'Other', 'code-snippets' ),
+				'icon'    => 'open-folder',
+				'changes' => [],
 			],
 		];
+
+		foreach ( explode( "\n", $text ) as $raw_line ) {
+			$line = trim( str_replace( '(PRO)', '', str_replace( '*', '', $raw_line ) ) );
+			$parts = explode( ': ', $line, 2 );
+			$section = isset( $changes[ $parts[0] ] ) ? $parts[0] : 'Other';
+
+			if ( isset( $parts[1] ) ) {
+				$changes[ $section ]['changes'][] = $parts[1];
+			} elseif ( isset( $parts[0] ) ) {
+				$changes[ $section ]['changes'][] = $parts[0];
+			}
+		}
+
+		return array_filter(
+			$changes,
+			function ( $section ) {
+				return ! empty( $section['changes'] );
+			}
+		);
 	}
 
 	/**

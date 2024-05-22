@@ -162,19 +162,23 @@ a.csp-card {
 	}
 
 	.csp-section-changes-log {
-		font-size: 16px;
+		font-size: 0.9rem;
 		line-height: 1.5;
 		color: #333;
 
+		h4 {
+			margin: 0;
+		}
+
 		p {
-			font-size: 16px;
 			line-height: 1.5;
 			color: #333;
 		}
 
-		.csp-changelog-list {
+		ul {
 			list-style-position: inside;
 			list-style-type: disc;
+			margin-top: 5px;
 
 			li {
 				margin-left: 1rem;
@@ -183,7 +187,7 @@ a.csp-card {
 	}
 
 	figure {
-		margin: 0;
+		margin: 1em 0 0;
 		overflow: hidden;
 		border-radius: 0.5rem;
 		border: 1px solid grey;
@@ -229,7 +233,7 @@ a.csp-card {
 		}
 
 		figure {
-			margin: 0;
+			margin: 1em 0 0 0;
 
 			img {
 				border-radius: 5px;
@@ -291,7 +295,6 @@ a.csp-card {
 .csp-cards {
 	display: grid;
 	grid-auto-rows: 1fr;
-	margin-top: 35px;
 	row-gap: 40px;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 15px;
