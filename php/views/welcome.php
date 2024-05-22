@@ -52,7 +52,8 @@ $hero = $this->get_hero_item();
 			<?php esc_html_e( 'Latest news', 'code-snippets' ); ?>
 		</h2>
 		<div class="csp-cards">
-			<a class="csp-card" href="<?php echo esc_url( $hero['follow_url'] ); ?>" target="_blank">
+			<a class="csp-card" href="<?php echo esc_url( $hero['follow_url'] ); ?>" target="_blank"
+			   title="<?php esc_html_e( 'Read more', 'code-snippets' ); ?>">
 				<header>
 					<span class="dashicons dashicons-external"></span>
 					<h3><?php echo esc_html( $hero['name'] ); ?></h3>
@@ -122,7 +123,7 @@ $hero = $this->get_hero_item();
 
 	<section class="csp-section-links csp-section-partners">
 		<h2>
-			<span class="dashicons dashicons-admin-site"></span>
+			<span class="dashicons dashicons-products"></span>
 			<?php esc_html_e( 'Partners and apps', 'code-snippets' ); ?>
 		</h2>
 		<div class="csp-cards">
