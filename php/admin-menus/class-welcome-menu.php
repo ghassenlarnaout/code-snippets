@@ -153,45 +153,47 @@ class Welcome_Menu extends Admin_Menu {
 * Improved: UX in generate dialog, such as allowing 'Enter' to submit the form. (PRO)
 * Added: Button to create a cloud connection directly from the Snippets menu when disconnected. (PRO)";
 
-		$changes = [
+		$default_changes = array_fill_keys( [ 'core', 'pro' ], [] );
+		$sections = [
 			'Added'    => [
 				'title'   => __( 'New features', 'code-snippets' ),
 				'icon'    => 'lightbulb',
-				'changes' => [],
+				'changes' => $default_changes,
 			],
 			'Improved' => [
 				'title'   => __( 'Improvements', 'code-snippets' ),
 				'icon'    => 'chart-line',
-				'changes' => [],
+				'changes' => $default_changes,
 			],
 			'Fixed'    => [
 				'title'   => __( 'Bug fixes', 'code-snippets' ),
 				'icon'    => 'buddicons-replies',
-				'changes' => [],
+				'changes' => $default_changes,
 			],
 			'Other'    => [
 				'title'   => __( 'Other', 'code-snippets' ),
 				'icon'    => 'open-folder',
-				'changes' => [],
+				'changes' => $default_changes,
 			],
 		];
 
 		foreach ( explode( "\n", $text ) as $raw_line ) {
 			$line = trim( str_replace( '(PRO)', '', str_replace( '*', '', $raw_line ) ) );
 			$parts = explode( ': ', $line, 2 );
-			$section = isset( $changes[ $parts[0] ] ) ? $parts[0] : 'Other';
 
-			if ( isset( $parts[1] ) ) {
-				$changes[ $section ]['changes'][] = $parts[1];
-			} elseif ( isset( $parts[0] ) ) {
-				$changes[ $section ]['changes'][] = $parts[0];
+			$section = isset( $sections[ $parts[0] ] ) ? $parts[0] : 'Other';
+			$subsection = str_contains( $raw_line, '(PRO)' ) ? 'pro' : 'core';
+
+			$line = end( $parts );
+			if ( $line ) {
+				$sections[ $section ]['changes'][ $subsection ][] = $line;
 			}
 		}
 
 		$this->welcome_data['changes'] = array_filter(
-			$changes,
+			$sections,
 			function ( $section ) {
-				return ! empty( $section['changes'] );
+				return ! empty( $section['changes']['core'] ) || ! empty( $section['changes']['pro'] );
 			}
 		);
 	}

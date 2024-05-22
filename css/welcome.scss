@@ -1,4 +1,5 @@
 @import 'common/base';
+@import 'common/type-badges';
 
 $breakpoint: 1060px;
 
@@ -142,7 +143,6 @@ a.csp-card {
 	}
 }
 
-
 .csp-section-changes {
 	border: 1px solid $theme-outline;
 	border-left: 0;
@@ -182,13 +182,19 @@ a.csp-card {
 		}
 
 		ul {
-			list-style-position: inside;
-			list-style-type: disc;
 			margin-top: 5px;
+		}
 
-			li {
-				margin-left: 1rem;
-			}
+		li {
+			display: grid;
+			grid-template-columns: 40px 1fr;
+			grid-template-rows: 1fr;
+			align-items: baseline;
+			gap: 7px;
+		}
+
+		li .badge {
+			text-align: center;
 		}
 	}
 

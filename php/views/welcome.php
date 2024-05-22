@@ -1,5 +1,4 @@
 <?php
-
 /**
  * HTML for the welcome page.
  *
@@ -93,9 +92,25 @@ $hero = $this->get_hero_item();
 							<?php echo esc_html( $section['title'] ); ?>
 						</h4>
 						<ul class="csp-changelog-list">
-							<?php foreach ( $section['changes'] as $change ) { ?>
-								<li><?php echo esc_html( $change ); ?></li>
-							<?php } ?>
+							<?php
+							foreach ( $section['changes'] as $change_type => $changes ) {
+								foreach ( $changes as $change ) { ?>
+									<li>
+										<span class="badge <?php echo esc_attr( $change_type ); ?>-badge">
+											<?php
+											echo esc_html(
+												'pro' === $change_type ?
+													_x( 'Pro', 'badge label', 'code-snippets' ) :
+													_x( 'Core', 'badge label', 'code-snippets' )
+											);
+											?>
+										</span>
+										<span><?php echo esc_html( $change ); ?></span>
+									</li>
+									<?php
+								}
+							}
+							?>
 						</ul>
 					<?php } ?>
 				</div>
