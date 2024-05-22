@@ -90,14 +90,17 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 			<?php } ?>
 		</ul>
 	</div>
-	<!-- Changelog and Key Feature -->
+
 	<article class="csp-section-changes">
-		<h2 class="csp-h2 csp-section-links-heading"><?php esc_html_e( 'Latest News…', 'code-snippets' ); ?>✨</h2>
+		<h2 class="csp-h2 csp-section-links-heading">
+			<span class="dashicons dashicons-pressthis"></span>
+			<?php esc_html_e( 'Latest news', 'code-snippets' ); ?>
+		</h2>
 		<div class="csp-section-changes-body">
 			<div class="csp-section-changes-left-col csp-section-changes-col">
 				<div class="csp-section-changes-right-col-bottom csp-card-white">
 					<div class="csp-section-changes-header">
-						<h2 class="csp-h2"><?php echo esc_html( $hero['name'] ); ?> 🚀</h2>
+						<h2 class="csp-h2"><?php echo esc_html( $hero['name'] ); ?></h2>
 						<?php
 						printf(
 							'<a href="%s" class="csp-link csp-img-link" target="_blank">%s<span class="dashicons dashicons-external"></span></a>',
@@ -123,7 +126,7 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 					<div class="csp-section-changes-header">
 						<h2 class="csp-h2">
 							<?php
-							/* translators: %s: current version number */
+							/* translators: %s: current plugin version number. */
 							echo esc_html( sprintf( __( "What's new in version %s", 'code-snippets' ), code_snippets()->version ) );
 							?>
 						</h2>
@@ -156,7 +159,8 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 
 	<section class="csp-section-links">
 		<h2 class="csp-h2 csp-section-links-heading">
-			<?php esc_html_e( 'Helpful articles…', 'code-snippets' ); ?>🎉
+			<span class="dashicons dashicons-sos"></span>
+			<?php esc_html_e( 'Helpful articles', 'code-snippets' ); ?>
 		</h2>
 		<div class="csp-grid csp-grid-4">
 			<?php foreach ( $features as $feature ) { ?>
@@ -185,7 +189,8 @@ $partners = isset( $welcome_data['partners'] ) && is_array( $welcome_data['partn
 
 	<section class="csp-section-links csp-section-partners">
 		<h2 class="csp-h2 csp-section-links-heading">
-			<?php esc_html_e( 'Partners and Apps…', 'code-snippets' ); ?>🔥
+			<span class="dashicons dashicons-admin-site"></span>
+			<?php esc_html_e( 'Partners and apps', 'code-snippets' ); ?>
 		</h2>
 		<div class="csp-grid csp-grid-4">
 			<?php foreach ( $partners as $partner ) { ?>
