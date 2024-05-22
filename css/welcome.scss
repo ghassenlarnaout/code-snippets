@@ -15,7 +15,7 @@
             flex-direction: row;
             align-items: center;
             gap: 10px;
-        
+
             .csp-heading{
                 font-size: 1.4rem;
                 font-weight: bold;
@@ -58,7 +58,7 @@
                 transition: all .1s ease-in-out;
                 border-radius: 3px;
                 padding: 8px;
-            
+
 
                 &:hover{
                     background: transparent;
@@ -68,7 +68,7 @@
             .csp-link-pro{
                 background: var(--cs-orange);
                 border-color: var(--cs-orange);
-                
+
                 &:hover{
                     .csp-link-text{
                         color: var(--cs-orange);
@@ -211,7 +211,7 @@
                     }
                 }
             }
-            
+
             .csp-img-link{
                 margin-bottom: 20px;
             }
@@ -332,7 +332,7 @@
         //grid-template-columns: repeat(3, 1fr);
         grid-template-columns: repeat(auto-fit, minmax(min(calc(((80 * 1rem) - (2rem * 2)) / 2.99), 100%), 1fr));
         gap: 15px;
-    }   
+    }
 
     .csp-grid-4{
         grid-template-columns: repeat(4, 1fr);
@@ -345,7 +345,7 @@
         margin-top: 35px;
         row-gap: 40px;
     }
-        
+
 }
 
 // Media Queries for Tablet and Mobile less than 1060px

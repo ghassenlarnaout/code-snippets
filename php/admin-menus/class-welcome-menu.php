@@ -37,8 +37,8 @@ class Welcome_Menu extends Admin_Menu {
 	 * @return array<string, mixed>
 	 */
 	public function load_welcome_data(): array {
-		$welcome_data = wp_remote_get( self::WELCOME_JSON_URL );
-		return json_decode( wp_remote_retrieve_body( $welcome_data ), true );
+		$welcome_data_response = wp_remote_get( self::WELCOME_JSON_URL );
+		return json_decode( wp_remote_retrieve_body( $welcome_data_response ), true );
 	}
 
 
