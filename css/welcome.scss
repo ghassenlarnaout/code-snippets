@@ -87,18 +87,35 @@ $breakpoint: 1060px;
 		border-radius: 3px;
 		padding: 8px;
 
+		&:hover {
+			background: transparent;
+		}
+
 		.dashicons, svg {
 			text-decoration: none;
 			margin-top: -1px;
 			margin-left: 3px;
 		}
 
-		&:hover {
-			background: transparent;
+		svg {
+			fill: #fff;
+			width: 20px;
+			height: 20px;
+			font-size: 20px;
+			vertical-align: top;
+		}
+
+		&:hover svg {
+			fill: currentColor;
 		}
 	}
 
-	@each $link_name, $color in (pro: $theme-secondary, cloud: #08c5d1, resources: #424242, discord: $brand-discord, facebook: $brand-facebook) {
+	@each $link_name, $color in (
+			pro: $theme-secondary,
+			cloud: #08c5d1,
+			resources: #424242,
+			discord: $brand-discord,
+			facebook: $brand-facebook) {
 		.csp-link-#{$link_name} {
 			background: $color;
 			border-color: $color;
@@ -108,17 +125,17 @@ $breakpoint: 1060px;
 			}
 		}
 	}
+}
 
-	a svg {
-		fill: #fff;
-		width: 20px;
-		height: 20px;
-		font-size: 20px;
-		vertical-align: top;
-	}
+.csp-cards {
+	display: grid;
+	grid-auto-rows: 1fr;
+	row-gap: 40px;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 15px;
 
-	a:hover svg {
-		fill: currentColor;
+	@media (max-width: $breakpoint) {
+		grid-template-columns: 1fr !important;
 	}
 }
 
@@ -173,7 +190,7 @@ a.csp-card {
 		font-size: 0.9rem;
 		line-height: 1.5;
 		color: #333;
-		height: 200px;
+		height: 400px;
 
 		h3 {
 			float: right;
@@ -306,7 +323,7 @@ a.csp-card {
 
 		.csp-card-item-description {
 			color: #51525c;
-			font-size: 1.1rem;
+			font-size: 1rem;
 			font-weight: 300;
 		}
 
@@ -320,6 +337,12 @@ a.csp-card {
 
 }
 
+.csp-section-articles {
+	h2 {
+		font-size: 1.1rem;
+	}
+}
+
 .csp-section-partners {
 	border-top: 1px solid $theme-outline;
 
@@ -328,18 +351,6 @@ a.csp-card {
 		flex-direction: row-reverse;
 		justify-content: space-between;
 		align-items: center;
-	}
-}
-
-.csp-cards {
-	display: grid;
-	grid-auto-rows: 1fr;
-	row-gap: 40px;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 15px;
-
-	@media (max-width: $breakpoint) {
-		grid-template-columns: 1fr !important;
 	}
 }
 

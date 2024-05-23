@@ -39,9 +39,9 @@ $changelog_sections = [
 	],
 ];
 
-$core_pro_labels = [
-	'pro'  => _x( 'Pro', 'badge label', 'code-snippets' ),
+$plugin_types = [
 	'core' => _x( 'Core', 'badge label', 'code-snippets' ),
+	'pro'  => _x( 'Pro', 'badge label', 'code-snippets' ),
 ];
 
 ?>
@@ -107,18 +107,28 @@ $core_pro_labels = [
 					<?php foreach ( $this->get_changelog() as $version => $version_changes ) { ?>
 						<h3><?php echo esc_html( $version ); ?></h3>
 						<article>
-							<?php foreach ( $version_changes as $section_name => $section_changes ) { ?>
+							<?php
+							foreach ( $changelog_sections as $section_key => $section ) {
+								if ( empty( $version_changes[ $section_key ] ) ) {
+									continue;
+								}
+								?>
 								<h4>
-									<span class="dashicons dashicons-<?php echo esc_attr( $changelog_sections[ $section_name ]['icon'] ); ?>"></span>
-									<?php echo esc_html( $changelog_sections[ $section_name ]['title'] ); ?>
+									<span class="dashicons dashicons-<?php echo esc_attr( $section['icon'] ); ?>"></span>
+									<?php echo esc_html( $section['title'] ); ?>
 								</h4>
 								<ul>
 									<?php
-									foreach ( $section_changes as $change_type => $changes ) {
-										foreach ( $changes as $change ) { ?>
+									foreach ( $plugin_types as $plugin_type => $type_label ) {
+										if ( empty( $version_changes[ $section_key ][ $plugin_type ] ) ) {
+											continue;
+										}
+
+										foreach ( $version_changes[ $section_key ][ $plugin_type ] as $change ) {
+											?>
 											<li>
-												<span class="badge <?php echo esc_attr( $change_type ); ?>-badge">
-													<?php echo esc_html( $core_pro_labels[ 'pro' === $change_type ? 'pro' : 'core' ] ); ?>
+												<span class="badge <?php echo esc_attr( $plugin_type ); ?>-badge">
+													<?php echo esc_html( $type_label ); ?>
 												</span>
 												<span><?php echo esc_html( $change ); ?></span>
 											</li>

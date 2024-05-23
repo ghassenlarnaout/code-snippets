@@ -174,14 +174,14 @@ class Welcome_Menu extends Admin_Menu {
 					$subsection = str_contains( $raw_line, '(PRO)' ) ? 'pro' : 'core';
 
 					if ( ! isset( $changelog[ $version ][ $section ] ) ) {
-						$changelog[ $version ][ $section ] = [];
+						$changelog[ $version ][ $section ] = [
+							$subsection => [ $entry ],
+						];
+					} elseif ( ! isset( $changelog[ $version ][ $section ][ $subsection ] ) ) {
+						$changelog[ $version ][ $section ][ $subsection ] = [ $entry ];
+					} else {
+						$changelog[ $version ][ $section ][ $subsection ][] = $entry;
 					}
-
-					if ( ! isset( $changelog[ $version ][ $section ][ $subsection ] ) ) {
-						$changelog[ $version ][ $section ][ $subsection ] = [];
-					}
-
-					$changelog[ $version ][ $section ][ $subsection ][] = $entry;
 				}
 			}
 		}
