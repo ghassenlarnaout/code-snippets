@@ -179,10 +179,13 @@ a.csp-card {
 	.csp-card {
 		padding: 20px;
 		box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-		overflow-y: scroll;
 
 		h2 {
 			color: $theme-primary;
+		}
+
+		&:last-child {
+			overflow-y: scroll;
 		}
 	}
 
