@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.6.5 (unreleased)
+## 3.6.5 (24 May 2024)
 * Added: New admin menu providing useful resources and updates on the Code Snippets plugin and community.
 
 ## 3.6.4 (15 Mar 2024)
