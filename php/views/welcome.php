@@ -77,10 +77,7 @@ $plugin_types = [
 	</div>
 
 	<section class="csp-section-changes">
-		<h1>
-			<span class="dashicons dashicons-pressthis"></span>
-			<?php esc_html_e( 'Latest news', 'code-snippets' ); ?>
-		</h1>
+		<h1>📰 <?php esc_html_e( 'Latest news', 'code-snippets' ); ?></h1>
 		<div class="csp-cards">
 			<a class="csp-card" href="<?php echo esc_url( $hero['follow_url'] ); ?>" target="_blank"
 			   title="<?php esc_html_e( 'Read more', 'code-snippets' ); ?>">
@@ -146,10 +143,7 @@ $plugin_types = [
 	</section>
 
 	<section class="csp-section-articles csp-section-links">
-		<h1>
-			<span class="dashicons dashicons-sos"></span>
-			<?php esc_html_e( 'Helpful articles', 'code-snippets' ); ?>
-		</h1>
+		<h1>🛟 <?php esc_html_e( 'Helpful articles', 'code-snippets' ); ?></h1>
 		<div class="csp-cards">
 			<?php foreach ( $this->get_remote_items( 'features' ) as $feature ) { ?>
 				<a class="csp-card"
@@ -173,10 +167,7 @@ $plugin_types = [
 	</section>
 
 	<section class="csp-section-links csp-section-partners">
-		<h1>
-			<span class="dashicons dashicons-products"></span>
-			<?php esc_html_e( 'Partners and apps', 'code-snippets' ); ?>
-		</h1>
+		<h1>🚀 <?php esc_html_e( 'Partners and apps', 'code-snippets' ); ?></h1>
 		<div class="csp-cards">
 			<?php foreach ( $this->get_remote_items( 'partners' ) as $partner ) { ?>
 				<a class="csp-card"
