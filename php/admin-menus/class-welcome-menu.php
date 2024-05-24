@@ -18,7 +18,7 @@ class Welcome_Menu extends Admin_Menu {
 	 *
 	 * @var string
 	 */
-	protected const WELCOME_JSON_URL = 'https://codesnippets.pro/wp-content/uploads/cs_welcome/cs_welcome.json';
+	protected const WELCOME_JSON_URL = 'https://snipco.de/welcome-json';
 
 	/**
 	 * Limit of number of items to display when loading lists of items.
@@ -212,7 +212,7 @@ class Welcome_Menu extends Admin_Menu {
 				'label' => __( 'Community', 'code-snippets' ),
 			],
 			'discord'   => [
-				'url'   => 'https://discord.gg/7EgrDz9P2w',
+				'url'   => 'https://snipco.de/discord',
 				'icon'  => 'discord',
 				'label' => __( 'Discord', 'code-snippets' ),
 			],
