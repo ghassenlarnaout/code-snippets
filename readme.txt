@@ -1,7 +1,7 @@
 === Code Snippets ===
 Contributors: bungeshea, ver3, lightbulbman, 0aksmith, codesnippetspro
 Donate link: https://codesnippets.pro
-Tags: snippets, functions, multisite, code, php, html, css, javascript, js, content, scripts, styles, cloud, shortcode
+Tags: code, snippets, multisite, php, css
 License: MIT
 License URI: license.txt
 Stable tag: 3.6.5
