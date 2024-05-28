@@ -4,7 +4,7 @@ Donate link: https://codesnippets.pro
 Tags: code, snippets, multisite, php, css
 License: MIT
 License URI: license.txt
-Stable tag: 3.6.5
+Stable tag: 3.6.5.1
 Tested up to: 6.5.3
 
 An easy, clean and simple way to enhance your site with code snippets.
