@@ -3,7 +3,7 @@ import { Spinner } from '@wordpress/components'
 import { useSnippetForm } from '../SnippetForm/context'
 import { DeleteButton } from './DeleteButton'
 import { ExportButtons } from './ExportButtons'
-import { SubmitButton } from './SubmitButton'
+import { SubmitButton } from './SubmitButtons'
 
 export const ActionButtons: React.FC = () => {
 	const { snippet, isWorking } = useSnippetForm()
