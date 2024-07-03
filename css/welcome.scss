@@ -162,7 +162,7 @@ a.csp-card {
 }
 
 .csp-section-changes {
-	border: 1px solid $theme-outline;
+	border-top: 1px solid $theme-outline;
 	border-left: 0;
 	border-right: 0;
 	padding: 40px 0 50px 0;
@@ -268,6 +268,64 @@ a.csp-card {
 }
 
 
+.csp-section-offer{
+	.csp-card.csp-card-offer {
+		width: auto;
+		min-height: 250px;
+		align-items: center;
+		padding: 25px;
+		position: relative;
+		border-color: $php-active;
+		justify-content: center;
+	}
+
+	.z-1{
+		z-index: 1;
+	}
+
+	.csp-card-offer-content{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+
+		h1 span{
+			font-size: 3rem;
+			border-bottom: 4px solid black;
+		}
+		
+		.csp-card-offer-desc{
+			text-align: center;
+
+			.offer-box{
+				padding: 10px 20px;
+				border-radius: 5px;
+				border: 1px dashed black;
+				background: #fff176;
+				font-size: 1.6rem;
+				font-weight: 900;
+				margin-top: 0px;
+			}
+		}
+
+		.csp-card-button{
+			color: white;
+			background: $theme-secondary;
+			display: block;
+			font-size: .9rem;
+			margin-bottom: 0;
+			margin-top: 0;
+			text-transform: uppercase;
+			width: fit-content;
+			padding: 12px 15px;
+			border-radius: 5px;
+			text-decoration: none;
+			font-weight: 700;
+		}
+	}
+}
+
 .csp-section-articles {
 	figure img {
 		aspect-ratio: 1;
@@ -275,6 +333,7 @@ a.csp-card {
 }
 
 .csp-section-links {
+	border-top: 1px solid $theme-outline;
 	padding: 40px 0 50px 0;
 
 	.csp-card {
@@ -347,7 +406,6 @@ a.csp-card {
 }
 
 .csp-section-partners {
-	border-top: 1px solid $theme-outline;
 
 	header {
 		display: flex;
@@ -368,6 +426,43 @@ a.csp-card {
 	position: absolute;
 	left: 47%;
 	top: 45%;
+}
+
+.csp-radial-bg {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0;
+    background: linear-gradient(to right, #FFFFFF, #ffffff);
+    display: flex;
+    flex-grow: 1;
+    z-index: 0;
+	
+	div {
+		position: absolute;
+		border-radius: 100%;
+		height: 100%;
+		filter: blur(10vw);
+		opacity: 0.6;
+	}
+
+	div:nth-child(1) {
+		background: linear-gradient(132deg, #1FCFC3 0.00%, #1F91CF 100.00%);
+		width: 46%;
+		left: 20%;
+		top: 0%;
+		transform: translateX(-50%) translateY(-50%);
+	}
+
+	div:nth-child(2) {
+		background: linear-gradient(132deg, #e8a07d 0.00%, #ec6026 100.00%);
+		width: 44%;
+		left: 78%;
+		top: 50%;
+		transform: translateX(-50%) translateY(-50%);
+	}
 }
 
 @keyframes loading-rotate {

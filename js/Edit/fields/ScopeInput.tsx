@@ -42,18 +42,25 @@ interface ShortcodeOptions {
 	php: boolean
 	format: boolean
 	shortcodes: boolean
+	name: boolean
 }
 
-const ShortcodeTag: React.FC<{ atts: ShortcodeAtts }> = ({ atts }) =>
-	<p>
-		<code className="shortcode-tag">{buildShortcodeTag(SHORTCODE_TAG, atts)}</code>
+const ShortcodeTag: React.FC<{ atts: ShortcodeAtts; options: ShortcodeOptions; snippetName: string }> = ({ atts, options, snippetName  }) => {
+	const finalAtts = { ...atts }
+	if (options.name) {
+		finalAtts.name = snippetName
+	}
+	return ( 
+		<p>
+			<code className="shortcode-tag">{buildShortcodeTag(SHORTCODE_TAG, finalAtts)}</code>
 
-		<CopyToClipboardButton
-			title={__('Copy shortcode to clipboard', 'code-snippets')}
-			text={buildShortcodeTag(SHORTCODE_TAG, atts)}
-		/>
-	</p>
-
+			<CopyToClipboardButton
+				title={__('Copy shortcode to clipboard', 'code-snippets')}
+				text={buildShortcodeTag(SHORTCODE_TAG, finalAtts)}
+			/>
+		</p>
+	)
+}
 interface ShortcodeOptionsProps {
 	optionLabels: [keyof ShortcodeOptions, string][]
 	options: ShortcodeOptions
@@ -89,7 +96,8 @@ const ShortcodeInfo: React.FC = () => {
 	const [options, setOptions] = useState<ShortcodeOptions>(() => ({
 		php: snippet.code.includes('<?'),
 		format: true,
-		shortcodes: false
+		shortcodes: false,
+		name: true
 	}))
 
 	return 'content' === snippet.scope ?
@@ -112,11 +120,14 @@ const ShortcodeInfo: React.FC = () => {
 
 			{snippet.id ?
 				<>
-					<ShortcodeTag atts={{
-						id: snippet.id,
-						network: snippet.network || isNetworkAdmin(),
-						...options
-					}} />
+					<ShortcodeTag 
+						atts={{
+							id: snippet.id,
+							network: snippet.network || isNetworkAdmin(),
+							...options
+						}}
+						options={options}
+						snippetName={snippet.name}/>
 
 					<ShortcodeOptions
 						options={options}
@@ -125,7 +136,8 @@ const ShortcodeInfo: React.FC = () => {
 						optionLabels={[
 							['php', __('Evaluate PHP code', 'code-snippets')],
 							['format', __('Add paragraphs and formatting', 'code-snippets')],
-							['shortcodes', __('Evaluate additional shortcode tags', 'code-snippets')]
+							['shortcodes', __('Evaluate additional shortcode tags', 'code-snippets')],
+							['name', __('Add name of snippet', 'code-snippets')]
 						]}
 					/>
 				</> : null}

@@ -142,6 +142,32 @@ $plugin_types = [
 		</div>
 	</section>
 
+	<section class="csp-section-links csp-section-offer">
+		<div class="csp-card csp-card-offer">
+		<div class="csp-radial-bg">
+			<div></div>
+			<div></div>
+		</div>
+			<?php
+			$current_user = wp_get_current_user();
+			$user_name = $current_user->display_name;
+			?>
+			<div class="csp-card-offer-content z-1">
+				<h1>🎉 
+					<?php echo esc_html( sprintf( __( '%s, Upgrade to Pro with all features for only ', 'code-snippets' ), $user_name ) ); ?>
+					<span>$1!</span>
+				</h1>
+				<div class="csp-card-offer-desc">
+					<p><?php esc_html_e( 'Applies to the first year only, use the coupon code', 'code-snippets' ); ?></p>
+					<p class="offer-box"><?php esc_html_e( 'PROTODAY', 'code-snippets' ); ?></p>
+				</div>
+				<a class="csp-card-button" href="<?php echo esc_url('https://codesnippets.pro/pricing/') ?>" target="_blank">
+					<?php esc_html_e( 'Get the offer', 'code-snippets' ); ?>
+				</a>
+			</div>
+		</div>
+	</section>
+
 	<section class="csp-section-articles csp-section-links">
 		<h1>🛟 <?php esc_html_e( 'Helpful articles', 'code-snippets' ); ?></h1>
 		<div class="csp-cards">
