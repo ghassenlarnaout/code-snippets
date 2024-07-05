@@ -23,13 +23,9 @@ Unlike other solutions that involve dumping code into your `functions.php` file,
 
 **🎥 Watch a quick overview by Imran Siddiq:**
 
-https://youtu.be/EMjIWjcYONk
+https://youtu.be/uzND-wdSCMQ
 
 ☁️ Each copy of Code Snippets includes full integration with the community-powered [Code Snippets Cloud](https://codesnippets.cloud/) platform, providing easy access to hundreds of tweaks and enhancements ready to power-up any WordPress site.
-
-**📚 Learn from Ferdy Korpershoek's tutorial:**
-
-https://youtu.be/29jD2BcBX5w
 
 **🌐 Connect with us:**
 
