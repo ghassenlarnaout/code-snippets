@@ -134,7 +134,7 @@ class Export {
 	 *
 	 * @param string|null $type Snippet type. Supports 'css' or 'js'.
 	 */
-	public function export_snippets_code( string $type = null ): string {
+	public function export_snippets_code( ?string $type = null ): string {
 		$result = '';
 
 		if ( ! $type ) {
