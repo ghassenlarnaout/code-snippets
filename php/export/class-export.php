@@ -82,7 +82,7 @@ class Export {
 		foreach ( $this->snippets_list as $snippet ) {
 			$code = trim( $snippet->code );
 
-			if ( 'php' !== $snippet->type && 'html' !== $snippet->type || ! $code ) {
+			if ( ( 'php' !== $snippet->type && 'html' !== $snippet->type ) || ! $code ) {
 				continue;
 			}
 
