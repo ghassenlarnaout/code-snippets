@@ -45,20 +45,20 @@ export const cssWebpackConfig: Configuration = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: "css-loader",
+						loader: 'css-loader',
 						options: {
 							sourceMap: true,
 							importLoaders: 2
 						}
 					},
 					{
-						loader: "postcss-loader",
+						loader: 'postcss-loader',
 						options: {
 							postcssOptions
 						}
 					},
 					{
-						loader: "sass-loader",
+						loader: 'sass-loader',
 						options: {
 							implementation: libsass,
 							sourceMap: true
@@ -71,14 +71,14 @@ export const cssWebpackConfig: Configuration = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: "css-loader",
+						loader: 'css-loader',
 						options: {
 							sourceMap: false,
 							importLoaders: 1
 						}
 					},
 					{
-						loader: "postcss-loader",
+						loader: 'postcss-loader',
 						options: {
 							postcssOptions: {
 								plugins: [cssnano()]
@@ -93,15 +93,15 @@ export const cssWebpackConfig: Configuration = {
 		new RemoveEmptyScriptsPlugin(),
 		new MiniCssExtractPlugin({
 			filename: ({ chunk }) =>
-				chunk ?
+				chunk?.name ?
 					`${chunk.name}.css`
 						.replace(/^codemirror-theme-/, 'editor-themes/')
 						.replace(/-style\.css$/, '.css') :
 					'[name].css'
 		}),
 		new WebpackRTLPlugin({
-			test: /^(edit|manage)\.css$/,
-			filename: [/(\.css)/i, '-rtl$1']
+			test: /^(?<filename>edit|manage)\.css$/,
+			filename: [/(?<ext>\.css)/i, '-rtl$1']
 		})
 	]
 }

@@ -1,7 +1,8 @@
-import { exec } from 'child_process'
-import { createWriteStream, promises as fs } from 'fs'
-import { webpack } from 'webpack'
-import pkg from '../package.json'
+import { spawn } from 'child_process'
+import { createWriteStream } from 'fs'
+import * as process from 'node:process'
+import { webpack as webpackAsync, Configuration } from 'webpack'
+import plugin from '../package.json'
 import webpackConfig from '../webpack.config'
 import { cleanup, copy, resolve } from './utils/files'
 import archiver from 'archiver'
@@ -23,23 +24,22 @@ const BUNDLE_FILES = [
 	'CHANGELOG.md'
 ]
 
-const execute = (command: string): Promise<string> =>
-	new Promise((resolve, reject) => {
-		exec(command, (error, stdout) => {
-			error ? reject(error) : resolve(stdout)
-		})
+const execute = (command: string, ...args: readonly string[]): Promise<number | null> =>
+	new Promise(resolve => {
+		const child = spawn(command, args)
+
+		child.stdout.on('data', (data: string) => process.stdout.write(data))
+		child.stderr.on('data', (data: string) => process.stderr.write(data))
+		child.on('close', code => resolve(code))
 	})
 
-const webpackProduction = (): Promise<void> =>
+const webpack = (config: Configuration): Promise<void> =>
 	new Promise((resolve, reject) =>
-		webpack({ ...webpackConfig, mode: 'production' }, error => {
-			error ? reject(error) : resolve()
-		})
-	)
+		webpackAsync({ ...webpackConfig, ...config }, error => error ? reject(error) : resolve()))
 
-export const createArchive = (): void => {
-	const filename = `${pkg.name}.${pkg.version}.zip`
-	console.info(`creating '${filename}'`)
+export const createArchive = (): Promise<void> => {
+	const filename = `${plugin.name}.${plugin.version}.zip`
+	console.info(`creating '${filename}\n`)
 
 	const output = createWriteStream(resolve(filename), 'utf8')
 	const archive = archiver('zip', {
@@ -47,23 +47,23 @@ export const createArchive = (): void => {
 	})
 
 	archive.pipe(output)
-	archive.directory(DEST_DIR, pkg.name)
-	archive.finalize()
+	archive.directory(resolve(DEST_DIR), plugin.name)
+	return archive.finalize()
 }
 
 const bundle = async () => {
-	console.log('generating composer and webpack files')
+	console.info('\ngenerating composer and webpack files\n')
 
 	await Promise.all([
-		cleanup(`${pkg.name}.*.zip`),
-		execute('composer install --no-dev'),
-		webpackProduction()
+		cleanup(`${plugin.name}.*.zip`),
+		execute('composer', 'install', '--no-dev'),
+		webpack({ mode: 'production' })
 	])
 
 	await copy(BUNDLE_FILES, DEST_DIR)
-	createArchive()
+	await createArchive()
 
-	await execute('composer install')
+	await execute('composer', 'install')
 }
 
-bundle().then()
+void bundle().then()

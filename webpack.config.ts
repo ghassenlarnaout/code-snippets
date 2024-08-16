@@ -11,7 +11,7 @@ const config = (_env: unknown, argv: Record<string, string>): Configuration =>
 	merge(
 		cssWebpackConfig,
 		jsWebpackConfig,
-		argv.mode === 'development' ? devConfig : prodConfig
+		'development' === argv.mode ? devConfig : prodConfig
 	)
 
 export default config
