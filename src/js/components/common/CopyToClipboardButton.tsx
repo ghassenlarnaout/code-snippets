@@ -1,4 +1,5 @@
-import React, { HTMLAttributes, MouseEventHandler, useState } from 'react'
+import type { HTMLAttributes, MouseEventHandler} from 'react'
+import React, { useState } from 'react'
 import { handleUnknownError } from '../../utils/errors'
 
 const TIMEOUT = 3000

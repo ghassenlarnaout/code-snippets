@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { __ } from '@wordpress/i18n'
 import { handleUnknownError } from '../../../utils/errors'
-import { Button, ButtonProps } from '../../common/Button'
+import type { ButtonProps } from '../../common/Button'
+import { Button } from '../../common/Button'
 import { ConfirmDialog } from '../../common/ConfirmDialog'
-import { Snippet } from '../../../types/Snippet'
+import type { Snippet } from '../../../types/Snippet'
 import { isNetworkAdmin } from '../../../utils/general'
 import { useSnippetForm } from '../../../hooks/useSnippetForm'
 

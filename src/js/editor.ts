@@ -1,4 +1,5 @@
-import { registerHelper, defineMode, getMode, EditorConfiguration, ModeSpec } from 'codemirror'
+import type { EditorConfiguration, ModeSpec } from 'codemirror'
+import { registerHelper, defineMode, getMode } from 'codemirror'
 import { Linter } from './utils/Linter'
 
 interface ModeSpecOptions {

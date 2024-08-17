@@ -1,5 +1,5 @@
 import { __ } from '@wordpress/i18n'
-import { Snippet } from '../../types/Snippet'
+import type { Snippet } from '../../types/Snippet'
 import { updateSnippet } from './requests'
 
 /**

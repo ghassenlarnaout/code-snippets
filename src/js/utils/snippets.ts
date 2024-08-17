@@ -1,4 +1,4 @@
-import { Snippet, SnippetScope, SnippetType } from '../types/Snippet'
+import type { Snippet, SnippetScope, SnippetType } from '../types/Snippet'
 import { isNetworkAdmin } from './general'
 
 const PRO_TYPES: SnippetType[] = ['css', 'js']

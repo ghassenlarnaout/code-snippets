@@ -1,7 +1,8 @@
 import { __, _x } from '@wordpress/i18n'
 import classnames from 'classnames'
 import React from 'react'
-import { KEYBOARD_KEYS, KeyboardShortcut } from '../../../types/KeyboardShortcut'
+import type { KeyboardShortcut } from '../../../types/KeyboardShortcut'
+import { KEYBOARD_KEYS } from '../../../types/KeyboardShortcut'
 import { isMacOS } from '../../../utils/general'
 
 const shortcuts: KeyboardShortcut[] = [

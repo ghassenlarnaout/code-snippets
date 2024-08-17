@@ -58,8 +58,11 @@ export default typescript.config(
 				assertionStyle: 'angle-bracket',
 				objectLiteralTypeAssertions: 'never'
 			}],
+			'@typescript-eslint/consistent-type-imports': 'error',
+			'@typescript-eslint/consistent-type-exports': 'error',
 			'@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
 			'@typescript-eslint/no-for-in-array': 'error',
+			'@typescript-eslint/no-import-type-side-effects': 'error',
 			'@typescript-eslint/no-inferrable-types': ['error', { ignoreProperties: true, ignoreParameters: false }],
 			'@typescript-eslint/no-unused-vars': ['error', {
 				argsIgnorePattern: '^_',

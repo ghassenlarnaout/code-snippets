@@ -1,4 +1,4 @@
-import { Snippet } from '../types/Snippet'
+import type { Snippet } from '../types/Snippet'
 import { getSnippetType } from './snippets'
 
 const SECOND_IN_MS = 1000

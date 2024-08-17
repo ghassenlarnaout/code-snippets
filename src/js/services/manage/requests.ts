@@ -1,4 +1,4 @@
-import { Snippet, SnippetScope } from '../../types/Snippet'
+import type { Snippet, SnippetScope } from '../../types/Snippet'
 import { isNetworkAdmin } from '../../utils/general'
 
 export interface ResponseData<T = unknown> {

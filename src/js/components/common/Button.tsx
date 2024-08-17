@@ -1,4 +1,5 @@
-import React, { ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes } from 'react'
+import React from 'react'
 import classnames from 'classnames'
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'> {

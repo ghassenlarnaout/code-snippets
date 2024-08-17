@@ -1,4 +1,5 @@
-import { DefinePlugin, Configuration } from 'webpack'
+import type { Configuration } from 'webpack'
+import { DefinePlugin } from 'webpack'
 import { join, resolve } from 'path'
 import ESLintPlugin from 'eslint-webpack-plugin'
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts'

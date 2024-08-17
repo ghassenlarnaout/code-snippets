@@ -3,14 +3,14 @@
     "description": "Manage code snippets running on a WordPress-powered site through a graphical interface.",
     "homepage": "https://wordpress.org/plugins/code-snippets",
     "version": "3.6.5.1",
-    "main": "dist/edit.js",
+    "main": "src/dist/edit.js",
     "directories": {
         "test": "tests"
     },
     "scripts": {
         "test": "eslint && npm run phpcs",
-        "build": "webpack --mode development",
-        "watch": "webpack --mode development --watch",
+        "build": "webpack",
+        "watch": "webpack --watch",
         "bundle": "ts-node scripts/bundle.ts",
         "phpcs": "src/vendor/bin/phpcs -s --colors ./phpcs.xml",
         "phpcbf": "src/vendor/bin/phpcbf ./phpcs.xml",

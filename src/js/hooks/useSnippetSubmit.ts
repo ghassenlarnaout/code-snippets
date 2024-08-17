@@ -1,9 +1,10 @@
 import { __ } from '@wordpress/i18n'
 import { addQueryArgs } from '@wordpress/url'
 import { isAxiosError } from 'axios'
-import { Dispatch, SetStateAction, useCallback } from 'react'
-import { ScreenNotice } from '../types/ScreenNotice'
-import { Snippet } from '../types/Snippet'
+import type { Dispatch, SetStateAction} from 'react'
+import { useCallback } from 'react'
+import type { ScreenNotice } from '../types/ScreenNotice'
+import type { Snippet } from '../types/Snippet'
 import { useSnippetsAPI } from './useSnippets'
 
 const getSuccessNotice = (request: Snippet, response: Snippet, active: boolean | undefined) => {

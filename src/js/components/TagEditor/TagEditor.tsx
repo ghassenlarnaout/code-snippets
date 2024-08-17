@@ -2,7 +2,8 @@
  * Code based on Tagger, copyright (c) 2018-2022 Jakub T. Jankiewicz <https://jcubic.pl/me>
  * Released under the MIT license.
  */
-import React, { InputHTMLAttributes, KeyboardEventHandler, useRef, useState } from 'react'
+import type { InputHTMLAttributes, KeyboardEventHandler} from 'react'
+import React, { useRef, useState } from 'react'
 import { handleUnknownError } from '../../utils/errors'
 import { SuggestionList } from './SuggestionList'
 import { TagList } from './TagList'
