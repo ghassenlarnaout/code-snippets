@@ -1,8 +1,8 @@
 import classnames from 'classnames'
-import type { MouseEventHandler, ReactNode} from 'react'
 import React, { useEffect } from 'react'
 import { __, sprintf } from '@wordpress/i18n'
 import { useSnippetForm } from '../../../hooks/useSnippetForm'
+import type { MouseEventHandler, ReactNode} from 'react'
 
 interface DismissibleNoticeProps {
 	classNames?: classnames.Argument

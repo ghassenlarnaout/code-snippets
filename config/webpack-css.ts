@@ -1,6 +1,4 @@
 import path from 'path'
-import type { Configuration, EntryObject } from 'webpack'
-import type { Config as PostCssConfig } from 'postcss-load-config'
 import libsass from 'sass'
 import cssnano from 'cssnano'
 import autoprefixer from 'autoprefixer'
@@ -9,6 +7,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import RemoveEmptyScriptsPlugin from 'webpack-remove-empty-scripts'
 import WebpackRTLPlugin from 'webpack-rtl-plugin'
 import { glob } from 'glob'
+import type { Config as PostCssConfig } from 'postcss-load-config'
+import type { Configuration, EntryObject } from 'webpack'
 
 const postcssOptions: PostCssConfig = {
 	plugins: [

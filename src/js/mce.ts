@@ -1,4 +1,4 @@
-import * as tinymce from 'tinymce'
+import tinymce from 'tinymce'
 import type { Editor } from 'tinymce'
 import type { ContentShortcodeAtts, SourceShortcodeAtts } from './types/Shortcodes'
 import type { LocalisedEditor } from './types/WordPressEditor'

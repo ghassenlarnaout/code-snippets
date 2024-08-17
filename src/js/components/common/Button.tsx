@@ -1,6 +1,6 @@
-import type { ButtonHTMLAttributes } from 'react'
 import React from 'react'
 import classnames from 'classnames'
+import type { ButtonHTMLAttributes } from 'react'
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'id' | 'name'> {
 	id?: string

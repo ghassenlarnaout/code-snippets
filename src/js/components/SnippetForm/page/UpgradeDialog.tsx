@@ -1,7 +1,7 @@
-import type { Dispatch, SetStateAction} from 'react'
 import React, { useState } from 'react'
 import { ExternalLink, Modal } from '@wordpress/components'
 import { __, _n, sprintf } from '@wordpress/i18n'
+import type { Dispatch, SetStateAction} from 'react'
 
 export interface UpgradeDialogProps {
 	isOpen: boolean
