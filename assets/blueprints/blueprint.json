@@ -2,8 +2,8 @@
     "$schema": "https://playground.wordpress.net/blueprint-schema.json",
     "landingPage": "/wp-admin/admin.php?page=snippets",
     "preferredVersions": {
-        "php": "8.2",
-        "wp": "6.6.1"
+        "php": "latest",
+        "wp": "latest"
     },
     "phpExtensionBundles": [
         "kitchen-sink"
@@ -11,11 +11,5 @@
     "features": {
         "networking": true
     },
-    "steps": [
-        {
-            "step": "login",
-            "username": "admin",
-            "password": "password"
-        }
-    ]
+    "login": true
 }
