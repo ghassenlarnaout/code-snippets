@@ -1,0 +1,47 @@
+
+.imported-snippets-list {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+
+	table {
+		max-width: 800px;
+		margin: 2em auto 0;
+	}
+
+	p.submit {
+		text-align: center;
+	}
+
+	th h3 {
+		font-size: inherit;
+		font-weight: inherit;
+		color: inherit;
+		margin: 0;
+	}
+
+	.import-button-column {
+		width: 0;
+	}
+
+	.snippet-column,
+	.expand-icon-column {
+		cursor: pointer;
+	}
+
+	.expand-icon-column {
+		position: relative;
+
+		span {
+			border: solid #50575e;
+			border-width: 0 2px 2px 0;
+			height: .5rem;
+			pointer-events: none;
+			position: absolute;
+			right: 1.5em;
+			top: 50%;
+			transform: translateY(-70%) rotate(45deg);
+			width: .5rem;
+		}
+	}
+}
