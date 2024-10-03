@@ -1,3 +1,4 @@
+import { ImportedSnippet } from '../types/ImportedSnippet'
 import { getSnippetType } from './snippets'
 import type { Snippet } from '../types/Snippet'
 
@@ -35,3 +36,18 @@ export const downloadSnippetExportFile = (
 
 	downloadAsFile(content, filename, mimeType)
 }
+
+export const readFileContents = (file: File): Promise<string> =>
+	new Promise((resolve, reject) => {
+		const reader = new FileReader()
+
+		reader.addEventListener('load', () => {
+			if (reader.result) {
+				resolve(reader.result.toString())
+			} else {
+				reject(`Could not read from file ${file.name}.`)
+			}
+		}, false)
+
+		reader.readAsText(file)
+	})

@@ -29,7 +29,8 @@ export const jsWebpackConfig: Configuration = {
 		manage: `${SOURCE_DIR}/manage.ts`,
 		mce: `${SOURCE_DIR}/mce.ts`,
 		prism: `${SOURCE_DIR}/prism.ts`,
-		settings: { import: `${SOURCE_DIR}/settings.ts`, dependOn: 'editor' }
+		import: `${SOURCE_DIR}/import.tsx`,
+		settings: { import: `${SOURCE_DIR}/settings.ts`, dependOn: 'editor' },
 	},
 	output: {
 		path: join(resolve(__dirname), '..', DEST_DIR),

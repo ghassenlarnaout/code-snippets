@@ -43,6 +43,18 @@ class Import_Menu extends Admin_Menu {
 	}
 
 	/**
+	 * Render the import page contents.
+	 *
+	 * @return void
+	 */
+	public function render() {
+		printf(
+			'<div id="import-snippets-container">%s</div>',
+			esc_html__( 'Loading import menu…', 'code-snippets' )
+		);
+	}
+
+	/**
 	 * Process the uploaded import files
 	 */
 	private function process_import_files() {
@@ -158,6 +170,28 @@ class Import_Menu extends Admin_Menu {
 	 * @return void
 	 */
 	public function enqueue_assets() {
-		// none required.
+		$plugin = code_snippets();
+
+		wp_enqueue_script(
+			'code-snippets-import',
+			plugins_url( 'dist/import.js', $plugin->file ),
+			[
+				'react',
+				'react-dom',
+				'wp-url',
+				'wp-i18n',
+				'wp-api-fetch',
+				'wp-components',
+			],
+			$plugin->version,
+			true
+		);
+
+		wp_enqueue_style(
+			'code-snippets-import',
+			plugins_url( 'dist/import.css', $plugin->file ),
+			[],
+			$plugin->version
+		);
 	}
 }
