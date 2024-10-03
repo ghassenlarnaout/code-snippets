@@ -1,8 +1,10 @@
-import { __, _x } from '@wordpress/i18n'
 import React, { useState } from 'react'
-import { ImportedSnippet } from '../../types/ImportedSnippet'
+import { __ } from '@wordpress/i18n'
+import { handleUnknownError } from '../../utils/errors'
 import { readFileContents } from '../../utils/files'
+import { parseSnippet } from '../../utils/snippets'
 import { FileUploader } from '../common/FileUploader'
+import type { ImportedSnippet } from '../../types/ImportedSnippet'
 
 interface ImportedSnippetsListProps {
 	snippets: ImportedSnippet[]
@@ -17,37 +19,29 @@ const ImportedSnippetsList: React.FC<ImportedSnippetsListProps> = ({ snippets })
 		)}
 	</div>
 
-const parseImportFile = (contents: string): ImportedSnippet[] => {
-	const exported: unknown = JSON.parse(contents)
-
-	if (typeof exported !== 'object' || exported === null || !('snippets' in exported) || !Array.isArray(exported.snippets)) {
-		return []
-	}
-
-	return exported.snippets.map((importedSnippet: Record<string, unknown>) => ({
-		id: 0,
-		uuid: new Date().getTime().toString(),
-		name: importedSnippet.name ?? '',
-		code: importedSnippet.code ?? '',
-		desc: importedSnippet.desc ?? '',
-		priority: importedSnippet.priority ?? 10,
-		scope: importedSnippet.scope ?? 'global',
-		tags: importedSnippet.tags ?? [],
-		active: false
-	}) as ImportedSnippet)
-}
+const parseImportFile = (exported: unknown): ImportedSnippet[] =>
+	'object' === typeof exported && null !== exported && 'snippets' in exported && Array.isArray(exported.snippets) ?
+		exported.snippets.map((snippet: unknown): ImportedSnippet => ({
+			...parseSnippet(snippet),
+			id: 0,
+			active: false,
+			uuid: new Date().getTime().toString()
+		})) :
+		[]
 
 export const ImportMenu: React.FC = () => {
 	const [snippets, setSnippets] = useState<ImportedSnippet[]>([])
 
-	const handleUpload = async (files: FileList) => {
+	const handleUpload = (files: FileList) => {
 		for (const file of files) {
-			readFileContents(file).then(content =>
-				setSnippets(previous => [
-					...previous ?? [],
-					...parseImportFile(content)
-				])
-			)
+			readFileContents(file)
+				.then(contents =>
+					setSnippets(previous => [
+						...previous,
+						...parseImportFile(JSON.parse(contents))
+					])
+				)
+				.catch(handleUnknownError)
 		}
 	}
 

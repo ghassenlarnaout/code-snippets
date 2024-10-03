@@ -1,4 +1,3 @@
-import { ImportedSnippet } from '../types/ImportedSnippet'
 import { getSnippetType } from './snippets'
 import type { Snippet } from '../types/Snippet'
 
@@ -42,10 +41,10 @@ export const readFileContents = (file: File): Promise<string> =>
 		const reader = new FileReader()
 
 		reader.addEventListener('load', () => {
-			if (reader.result) {
-				resolve(reader.result.toString())
+			if (reader.result && 'string' === typeof reader.result) {
+				resolve(reader.result)
 			} else {
-				reject(`Could not read from file ${file.name}.`)
+				reject(new Error(`Could not read from file ${file.name}.`))
 			}
 		}, false)
 

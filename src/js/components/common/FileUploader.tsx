@@ -31,7 +31,7 @@ export const FileUploader: React.FC<FileUploaderProps> = ({ onUpload }) =>
 								hidden
 								multiple
 								onChange={event => {
-									if (event.target?.files) {
+									if (event.target.files) {
 										onUpload(event.target.files)
 									}
 								}}
