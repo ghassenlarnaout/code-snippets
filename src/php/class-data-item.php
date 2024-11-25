@@ -81,7 +81,13 @@ abstract class Data_Item {
 	 * @return array<string, mixed> Field names keyed to current values.
 	 */
 	public function get_fields(): array {
-		return $this->fields;
+		$fields = [];
+
+		foreach ( $this->get_allowed_fields() as $field_name ) {
+			$fields[ $field_name ] = $this->$field_name;
+		}
+
+		return $fields;
 	}
 
 	/**
