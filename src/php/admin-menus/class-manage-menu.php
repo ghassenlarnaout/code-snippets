@@ -18,14 +18,14 @@ class Manage_Menu extends Admin_Menu {
 	 *
 	 * @var List_Table
 	 */
-	public $list_table;
+	public List_Table $list_table;
 
 	/**
 	 * Instance of the cloud list table class for search results.
 	 *
 	 * @var Cloud_Search_List_Table
 	 */
-	public $cloud_search_list_table;
+	public Cloud_Search_List_Table $cloud_search_list_table;
 
 	/**
 	 * Class constructor
@@ -211,7 +211,7 @@ class Manage_Menu extends Admin_Menu {
 		wp_set_script_translations( 'code-snippets-manage-js', 'code-snippets' );
 
 		if ( 'cloud_search' === $this->get_current_type() ) {
-			Frontend::enqueue_all_prism_themes();
+			Front_End::enqueue_all_prism_themes();
 		}
 	}
 

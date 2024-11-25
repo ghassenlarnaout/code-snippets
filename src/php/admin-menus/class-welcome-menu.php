@@ -46,7 +46,7 @@ class Welcome_Menu extends Admin_Menu {
 	 *
 	 * @var ?array
 	 */
-	private $welcome_data = null;
+	private ?array $welcome_data = null;
 
 	/**
 	 * Class constructor
