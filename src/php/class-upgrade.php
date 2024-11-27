@@ -98,7 +98,7 @@ class Upgrade {
 		}
 
 		clean_snippets_cache( $table_name );
-		Welcome_Menu::clear_cache();
+		Welcome_API::clear_cache();
 	}
 
 	/**
