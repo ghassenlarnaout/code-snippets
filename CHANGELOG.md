@@ -5,7 +5,7 @@
 * Redeployment of v3.6.6 to overcome issue with initial build.
 
 ### Fixed
-* Type issue when caching cloud links. (PRO)
+* Type issue when accessing cloud sync. (PRO)
 
 ## [3.6.6] (2024-11-27)
 
