@@ -1,7 +1,10 @@
-@use 'sass:meta';
-@import '~@jcubic/tagger/tagger.css';
-@include meta.load-css('common/editor');
-@include meta.load-css('common/type-badges');
+@use 'common/editor';
+@use 'common/type-badges';
+@use 'edit/tooltips';
+@use 'edit/types';
+@use 'edit/tags';
+@use 'edit/upgrade-dialog';
+@use 'edit/gpt';
 
 /**
  * Custom styling for the single snippet admin page
@@ -149,9 +152,3 @@ p.snippet-scope, .snippet-scope p {
 .wrap .notice {
 	scroll-margin: 0.75em;
 }
-
-@include meta.load-css('edit/tooltips');
-@include meta.load-css('edit/types');
-@include meta.load-css('edit/tags');
-@include meta.load-css('edit/upgrade-dialog');
-@include meta.load-css('edit/gpt');
