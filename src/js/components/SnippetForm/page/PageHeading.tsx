@@ -12,7 +12,7 @@ export const PageHeading: React.FC = () => {
 		<h1>
 			{snippet.id ?
 				__('Edit Snippet', 'code-snippets') :
-				__('Add New Snippet', 'code-snippets')}
+				__('Create New Snippet', 'code-snippets')}
 
 			{snippet.id ? <>{' '}
 				<a href={window.CODE_SNIPPETS?.urls.addNew} className="page-title-action" onClick={event => {
@@ -22,7 +22,7 @@ export const PageHeading: React.FC = () => {
 
 					window.document.title = window.document.title.replace(
 						__('Edit Snippet', 'code-snippets'),
-						__('Add New Snippet', 'code-snippets')
+						__('Create New Snippet', 'code-snippets')
 					)
 
 					window.history.replaceState({}, '', window.CODE_SNIPPETS?.urls.addNew)

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react'
+import { __ } from '@wordpress/i18n'
+import { handleUnknownError } from '../../../utils/errors'
 import { isMacOS } from '../../../utils/general'
 import { useSnippetForm } from '../../../hooks/useSnippetForm'
 import { CodeEditorShortcuts } from './CodeEditorShortcuts'
@@ -26,28 +28,38 @@ export const CodeEditor: React.FC = () => {
 			const extraKeys = codeEditorInstance.codemirror.getOption('extraKeys')
 			const controlKey = isMacOS() ? 'Cmd' : 'Ctrl'
 
+			const onSave = () => {
+				submitSnippet()
+					.then(() => undefined)
+					.catch(handleUnknownError)
+			}
+
 			codeEditorInstance.codemirror.setOption('extraKeys', {
 				...'object' === typeof extraKeys ? extraKeys : undefined,
-				[`${controlKey}-S`]: submitSnippet,
-				[`${controlKey}-Enter`]: submitSnippet
+				[`${controlKey}-S`]: onSave,
+				[`${controlKey}-Enter`]: onSave
 			})
 		}
 	}, [submitSnippet, codeEditorInstance, snippet])
 
 	return (
-		<div className="snippet-editor">
-			<textarea
-				ref={textareaRef}
-				id="snippet_code"
-				name="snippet_code"
-				rows={200}
-				spellCheck={false}
-				onChange={event => {
-					setSnippet(previous => ({ ...previous, code: event.target.value }))
-				}}
-			>{snippet.code}</textarea>
+		<div className="snippet-code-container">
+			<h2><label htmlFor="snippet-code">{__('Snippet Content', 'code-snippets')}</label></h2>
 
-			<CodeEditorShortcuts editorTheme={window.CODE_SNIPPETS_EDIT?.editorTheme ?? 'default'} />
+			<div className="snippet-editor">
+				<textarea
+					ref={textareaRef}
+					id="snippet-code"
+					name="snippet_code"
+					rows={200}
+					spellCheck={false}
+					onChange={event => {
+						setSnippet(previous => ({ ...previous, code: event.target.value }))
+					}}
+				>{snippet.code}</textarea>
+
+				<CodeEditorShortcuts editorTheme={window.CODE_SNIPPETS_EDIT?.editorTheme ?? 'default'} />
+			</div>
 		</div>
 	)
 }

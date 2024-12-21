@@ -1,8 +1,8 @@
 import classnames from 'classnames'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { __, sprintf } from '@wordpress/i18n'
 import { useSnippetForm } from '../../../hooks/useSnippetForm'
-import type { MouseEventHandler, ReactNode} from 'react'
+import type { MouseEventHandler, ReactNode } from 'react'
 
 interface DismissibleNoticeProps {
 	classNames?: classnames.Argument
@@ -10,26 +10,17 @@ interface DismissibleNoticeProps {
 	children?: ReactNode
 }
 
-const DismissibleNotice: React.FC<DismissibleNoticeProps> = ({ classNames, onRemove, children }) => {
-	useEffect(() => {
-		if (window.CODE_SNIPPETS_EDIT?.scrollToNotices) {
-			window.scrollTo({ top: 0, behavior: 'smooth' })
-		}
-	}, [])
+const DismissibleNotice: React.FC<DismissibleNoticeProps> = ({ classNames, onRemove, children }) =>
+	<div id="message" className={classnames('notice fade is-dismissible', classNames)}>
+		<>{children}</>
 
-	return (
-		<div id="message" className={classnames('notice fade is-dismissible', classNames)}>
-			<>{children}</>
-
-			<button type="button" className="notice-dismiss" onClick={event => {
-				event.preventDefault()
-				onRemove(event)
-			}}>
-				<span className="screen-reader-text">{__('Dismiss notice.', 'code-snippets')}</span>
-			</button>
-		</div>
-	)
-}
+		<button type="button" className="notice-dismiss" onClick={event => {
+			event.preventDefault()
+			onRemove(event)
+		}}>
+			<span className="screen-reader-text">{__('Dismiss notice.', 'code-snippets')}</span>
+		</button>
+	</div>
 
 export const Notices: React.FC = () => {
 	const { currentNotice, setCurrentNotice, snippet, setSnippet } = useSnippetForm()

@@ -13,6 +13,8 @@ export interface Snippet {
 	code_error?: [string, number] | null
 }
 
+export type SnippetLocation = 'site-head' | 'site-footer'
+
 export type SnippetType = typeof SNIPPET_TYPES[number]
 export type SnippetScope = typeof SNIPPET_SCOPES[number]
 

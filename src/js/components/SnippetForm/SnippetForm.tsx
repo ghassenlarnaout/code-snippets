@@ -1,22 +1,17 @@
 import React, { useState } from 'react'
 import classnames from 'classnames'
-import { isNetworkAdmin } from '../../utils/general'
+import { __ } from '@wordpress/i18n'
 import { createEmptySnippet, getSnippetType } from '../../utils/snippets'
 import { WithSnippetFormContext, useSnippetForm } from '../../hooks/useSnippetForm'
-import { ActionButtons } from './buttons/ActionButtons'
+import { Button } from '../common/Button'
+import { EditorSidebar } from '../EditorSidebar'
+import { SnippetLocationInput } from './fields/SnippetLocationInput'
+import { SnippetTypeInput } from './fields/SnippetTypeInput'
 import { UpgradeDialog } from './page/UpgradeDialog'
 import { DescriptionEditor } from './fields/DescriptionEditor'
-import { MultisiteSharingSettings } from './fields/MultisiteSharingSettings'
 import { NameInput } from './fields/NameInput'
-import { PriorityInput } from './fields/PriorityInput'
-import { ScopeInput } from './fields/ScopeInput'
-import { TagsInput } from './fields/TagsInput'
-import { Notices } from './page/Notices'
 import { PageHeading } from './page/PageHeading'
-import { SnippetEditor } from './SnippetEditor/SnippetEditor'
-import { SnippetEditorToolbar } from './SnippetEditor/SnippetEditorToolbar'
-
-const OPTIONS = window.CODE_SNIPPETS_EDIT
+import { CodeEditor } from './fields/CodeEditor'
 
 const EditForm: React.FC = () => {
 	const [isUpgradeDialogOpen, setIsUpgradeDialogOpen] = useState(false)
@@ -24,8 +19,11 @@ const EditForm: React.FC = () => {
 
 	return (
 		<div className="wrap">
+			<p><small><a href={window.CODE_SNIPPETS?.urls.manage}>
+				{__('Back to all snippets', 'code-snippets')}
+			</a></small></p>
+
 			<PageHeading />
-			<Notices />
 
 			<div id="snippet-form" className={classnames(
 				'snippet-form',
@@ -38,21 +36,30 @@ const EditForm: React.FC = () => {
 					'read-only-snippet': isReadOnly
 				}
 			)}>
-				<NameInput />
+				<main className="snippet-form-main">
+					<NameInput />
 
-				<SnippetEditorToolbar />
-				<SnippetEditor openUpgradeDialog={() => setIsUpgradeDialogOpen(true)} />
+					<div className="above-editor-container">
+						<SnippetTypeInput openUpgradeDialog={() => setIsUpgradeDialogOpen(true)} />
 
-				<div className="below-snippet-editor">
-					<ScopeInput />
-					<PriorityInput />
-				</div>
+						<SnippetLocationInput />
 
-				{isNetworkAdmin() ? <MultisiteSharingSettings /> : null}
-				{OPTIONS?.enableDescription ? <DescriptionEditor /> : null}
-				{OPTIONS?.tagOptions.enabled ? <TagsInput /> : null}
+						<div className="conditions-editor-open">
+							<h3>{__('Conditions', 'code-snippets')}</h3>
+							<Button large>
+								<span className="dashicons dashicons-randomize"></span>
+								{__('Set Conditions', 'code-snippets')}
+								<span className="badge">{__('beta', 'code-snippets')}</span>
+							</Button>
+						</div>
+					</div>
 
-				<ActionButtons />
+					<CodeEditor />
+
+					{window.CODE_SNIPPETS_EDIT?.enableDescription ? <DescriptionEditor /> : null}
+				</main>
+
+				<EditorSidebar />
 			</div>
 
 			<UpgradeDialog isOpen={isUpgradeDialogOpen} setIsOpen={setIsUpgradeDialogOpen} />
@@ -61,6 +68,6 @@ const EditForm: React.FC = () => {
 }
 
 export const SnippetForm: React.FC = () =>
-	<WithSnippetFormContext initialSnippet={() => OPTIONS?.snippet ?? createEmptySnippet()}>
+	<WithSnippetFormContext initialSnippet={() => window.CODE_SNIPPETS_EDIT?.snippet ?? createEmptySnippet()}>
 		<EditForm />
 	</WithSnippetFormContext>

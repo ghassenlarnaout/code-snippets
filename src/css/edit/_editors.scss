@@ -1,4 +1,14 @@
 
+.snippet-editor {
+	position: relative;
+}
+
+.CodeMirror,
+.snippet-form textarea {
+	width: 100%;
+	font-family: monospace;
+}
+
 .CodeMirror-sizer {
 	min-height: 300px !important;
 	box-sizing: border-box;
@@ -8,36 +18,16 @@
 		position: absolute;
 		bottom: 0;
 	}
-}
 
-.snippet-scope {
-	display: none;
-
-	.description {
-		display: block;
-	}
-}
-
-.snippet-form.php-snippet {
-	.php-scopes-list {
-		display: block;
-	}
-
-	.CodeMirror-sizer {
+	.snippet-form.php-snippet & {
 		padding-bottom: 0 !important;
 
 		&::before {
 			content: '<?php';
 		}
 	}
-}
 
-.snippet-form.css-snippet {
-	.css-scopes-list {
-		display: block;
-	}
-
-	.CodeMirror-sizer {
+	.snippet-form.css-snippet & {
 		&::before {
 			content: '<style>';
 		}
@@ -46,14 +36,8 @@
 			content: '</style>';
 		}
 	}
-}
 
-.snippet-form.js-snippet {
-	.js-scopes-list {
-		display: block;
-	}
-
-	.CodeMirror-sizer {
+	.snippet-form.js-snippet & {
 		&::before {
 			content: '<script>';
 		}
@@ -62,14 +46,8 @@
 			content: '</script>';
 		}
 	}
-}
 
-.snippet-form.html-snippet {
-	.html-scopes-list {
-		display: block;
-	}
-
-	.CodeMirror-sizer {
+	.snippet-form.html-snippet & {
 		&::before {
 			content: '<!-- begin content -->';
 		}
@@ -78,4 +56,21 @@
 			content: '<!-- end content -->';
 		}
 	}
+}
+
+.snippet-description-container {
+	margin-top: 25px;
+
+	.wp-editor-tools {
+		padding-top: 5px;
+	}
+
+	.wp-editor-tabs {
+		float: left;
+	}
+}
+
+/* Position the description heading on the same level as the editor buttons */
+label[for='snippet_description'] h3 div {
+	position: absolute;
 }

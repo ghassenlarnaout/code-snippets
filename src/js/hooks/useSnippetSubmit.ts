@@ -66,7 +66,7 @@ export const useSnippetSubmit = (
 
 			if (snippet.id && result.id) {
 				window.document.title = window.document.title.replace(
-					__('Add New Snippet', 'code-snippets'),
+					__('Create New Snippet', 'code-snippets'),
 					__('Edit Snippet', 'code-snippets')
 				)
 
